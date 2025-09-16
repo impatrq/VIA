@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Via</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background: radial-gradient(circle at center, #FFD600, #FF6F00, #D500F9);
+      font-family: Arial, sans-serif;
+    }
+    h1 {
+      font-size: 80px;
+      color: #fff;
+      margin-bottom: 40px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.4);
+    }
+    .btn-group {
+      display: flex;
+      gap: 20px;
+    }
+    button {
+      padding: 20px 40px;
+      font-size: 24px;
+      border: none;
+      border-radius: 10px;
+      background-color: rgba(255, 255, 255, 0.85);
+      color: #000;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.2s;
+      box-shadow: 2px 2px 8px rgba(0,0,0,0.2);
+    }
+    button:hover {
+      background-color: #ffe066;
+      transform: scale(1.05);
+    }
+    .form-step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      color: white;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+    }
+    input {
+      font-size: 20px;
+      margin: 10px 0;
+      padding: 8px;
+      border-radius: 6px;
+      border: none;
+      outline: none;
+      width: 250px;
+    }
+  </style>
+</head>
+<body>
+  <h1 id="titulo" style="display:none;">VIA</h1>
+  <div class="btn-group" id="botones" style="display:none;">
+    <button onclick="compartirUbicacion()">Compartir ubicación</button>
+    <button onclick="abrirUbicacion()">¿Dónde estoy?</button>
+  </div>
+  <!-- Paso 1: Usuario -->
+  <div id="usuario-form" class="form-step">
+    <label for="usuario-nombre">Tu nombre:</label>
+    <input type="text" id="usuario-nombre" placeholder="Tu nombre">
+    <label for="usuario-email">Tu correo electrónico:</label>
+    <input type="email" id="usuario-email" placeholder="Tu correo electrónico">
+    <button onclick="guardarUsuario()">Continuar</button>
+  </div>
+  <!-- Paso 2: Guía -->
+  <div id="mate-form" class="form-step" style="display:none;">
+    <label for="mate">Nombre de tu guía o persona de confianza:</label>
+    <input type="text" id="mate" placeholder="Nombre">
+    <label for="mate-email">Correo electrónico del guía:</label>
+    <input type="email" id="mate-email" placeholder="Correo electrónico">
+    <button onclick="guardarMate()">Continuar</button>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+  <script>
+    emailjs.init('5o0oirlCIaC5KwqQq'); // Reemplaza con tu user_id de EmailJS
+
+    // --- NUEVO: Función para leer en voz alta ---
+    function leerTexto(texto) {
+      const synth = window.speechSynthesis;
+      if (synth.speaking) synth.cancel();
+      const utter = new SpeechSynthesisUtterance(texto);
+      utter.lang = 'es-ES';
+      synth.speak(utter);
+    }
+
+    // --- NUEVO: Asignar eventos a botones y textos ---
+    window.addEventListener('DOMContentLoaded', () => {
+      // Botones principales
+      document.querySelectorAll('button').forEach(btn => {
+        btn.addEventListener('focus', () => leerTexto(btn.textContent));
+        btn.addEventListener('mouseenter', () => leerTexto(btn.textContent));
+      });
+      // Etiquetas de los formularios
+      document.querySelectorAll('label').forEach(lbl => {
+        lbl.addEventListener('focus', () => leerTexto(lbl.textContent));
+        lbl.addEventListener('mouseenter', () => leerTexto(lbl.textContent));
+      });
+      // Inputs: leer el placeholder al enfocar
+      document.querySelectorAll('input').forEach(inp => {
+        inp.addEventListener('focus', () => leerTexto(inp.placeholder));
+      });
+    });
+
+    let usuarioNombre = "";
+    let usuarioEmail = "";
+    let mateNombre = "";
+    let mateEmail = "";
+
+    function guardarUsuario() {
+      const nombreInput = document.getElementById('usuario-nombre');
+      const emailInput = document.getElementById('usuario-email');
+      if (nombreInput.value.trim() === "") {
+        alert("Por favor, escribe tu nombre.");
+        return;
+      }
+      if (emailInput.value.trim() === "" || !emailInput.value.includes('@')) {
+        alert("Por favor, escribe un correo electrónico válido.");
+        return;
+      }
+      usuarioNombre = nombreInput.value.trim();
+      usuarioEmail = emailInput.value.trim();
+      document.getElementById('usuario-form').style.display = 'none';
+      document.getElementById('mate-form').style.display = '';
+    }
+
+    function guardarMate() {
+      const input = document.getElementById('mate');
+      const emailInput = document.getElementById('mate-email');
+      if (input.value.trim() === "") {
+        alert("Por favor, escribe el nombre de tu guía o persona de confianza.");
+        return;
+      }
+      if (emailInput.value.trim() === "" || !emailInput.value.includes('@')) {
+        alert("Por favor, escribe un correo electrónico válido.");
+        return;
+      }
+      mateNombre = input.value.trim();
+      mateEmail = emailInput.value.trim();
+
+      // Enviar correo de confirmación al guía, incluyendo el nombre del usuario
+      emailjs.send('service_granata', 'template_120f5nn', {
+        to_name: mateNombre,
+        to_email: mateEmail,
+        from_name: usuarioNombre,
+        from_email: usuarioEmail
+      })
+      .then(function(response) {
+        alert('Correo de confirmación enviado a ' + mateEmail);
+        document.getElementById('mate-form').style.display = 'none';
+        document.getElementById('titulo').style.display = '';
+        document.getElementById('botones').style.display = '';
+      }, function(error) {
+        alert('No se pudo enviar el correo de confirmación. Intenta nuevamente.');
+      });
+    }
+
+    function compartirUbicacion() {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(position) {
+          const lat = position.coords.latitude;
+          const lon = position.coords.longitude;
+          const url = `https://www.google.com/maps?q=${lat},${lon}`;
+          // Enviar ubicación por correo al guía, incluyendo el nombre del usuario
+          emailjs.send('service_granata', 'template_120f5nn', {
+            to_name: mateNombre,
+            to_email: mateEmail,
+            from_name: usuarioNombre,
+            from_email: usuarioEmail,
+            location_url: url
+          })
+          .then(function(response) {
+            alert('¡Ubicación enviada por correo a ' + mateEmail + '!');
+          }, function(error) {
+            alert('No se pudo enviar la ubicación por correo. Intenta nuevamente.');
+          });
+        }, function() {
+          alert('No se pudo obtener la ubicación.');
+        });
+      } else {
+        alert('La geolocalización no está soportada en este navegador.');
+      }
+    }
+
+    function abrirUbicacion() {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(position) {
+          const lat = position.coords.latitude;
+          const lon = position.coords.longitude;
+          const url = `https://www.google.com/maps?q=${lat},${lon}`;
+          window.open(url, '_blank');
+        }, function() {
+          alert('No se pudo obtener la ubicación.');
+        });
+      } else {
+        alert('La geolocalización no está soportada en este navegador.');
+      }
+    }
+  </script>
+</body>
+</html>

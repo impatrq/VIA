@@ -86,16 +86,23 @@
   <script>
     emailjs.init('5o0oirlCIaC5KwqQq'); // Reemplaza con tu user_id de EmailJS
 
-    // --- NUEVO: Función para leer en voz alta ---
+    // FUNCION PARA LEER EN VOZ ALTA
     function leerTexto(texto) {
-      const synth = window.speechSynthesis;
-      if (synth.speaking) synth.cancel();
-      const utter = new SpeechSynthesisUtterance(texto);
-      utter.lang = 'es-ES';
-      synth.speak(utter);
+      try {
+        const synth = window.speechSynthesis;
+        if (synth.speaking) synth.cancel();
+        const utter = new SpeechSynthesisUtterance(texto);
+        // idioma español (Argentina/ES). El navegador elegirá la voz disponible.
+        utter.lang = 'es-ES';
+        utter.rate = 1;
+        utter.pitch = 1;
+        synth.speak(utter);
+      } catch (e) {
+        console.warn('SpeechSynthesis no disponible o error:', e);
+      }
     }
 
-    // --- NUEVO: Asignar eventos a botones y textos ---
+    // Asignar eventos a botones y textos
     window.addEventListener('DOMContentLoaded', () => {
       // Botones principales
       document.querySelectorAll('button').forEach(btn => {
@@ -193,19 +200,100 @@
       }
     }
 
-    function abrirUbicacion() {
-      if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(function(position) {
-          const lat = position.coords.latitude;
-          const lon = position.coords.longitude;
+    // UTIL: Haversine para distancia en metros
+    function distanciaMetros(lat1, lon1, lat2, lon2) {
+      // cálculos en radianes
+      function toRad(deg) { return deg * Math.PI / 180; }
+      const R = 6371000; // radio Tierra en m
+      const dLat = toRad(lat2 - lat1);
+      const dLon = toRad(lon2 - lon1);
+      const a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+                Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) *
+                Math.sin(dLon/2) * Math.sin(dLon/2);
+      const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+      return R * c;
+    }
+
+    // FUNCION: Obtener reverse geocode desde Nominatim
+    async function reverseNominatim(lat, lon) {
+      // Nominatim reverse; format=jsonv2 para datos estructurados
+      const url = `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${encodeURIComponent(lat)}&lon=${encodeURIComponent(lon)}&addressdetails=1`;
+      const resp = await fetch(url, { headers: { 'Accept': 'application/json' } });
+      if (!resp.ok) throw new Error('Error en Nominatim: ' + resp.status);
+      return resp.json();
+    }
+
+    // ABRIR/ANUNCIAR UBICACION: lógica pedida
+    async function abrirUbicacion() {
+      if (!navigator.geolocation) {
+        alert('La geolocalización no está soportada en este navegador.');
+        return;
+      }
+
+      navigator.geolocation.getCurrentPosition(async function(position) {
+        const lat = position.coords.latitude;
+        const lon = position.coords.longitude;
+        try {
+          const userInfo = await reverseNominatim(lat, lon);
+          // userInfo puede contener .name, .display_name, .address, .lat, .lon
+          // Intentamos tomar el resultado principal (puede ser la carretera, edificio, etc.)
+          let candidateName = userInfo.name || userInfo.display_name || null;
+          const candidateLat = parseFloat(userInfo.lat || lat);
+          const candidateLon = parseFloat(userInfo.lon || lon);
+          const userStreet = (userInfo.address && (userInfo.address.road || userInfo.address.pedestrian || userInfo.address.cycleway)) || null;
+          const candidateStreet = (userInfo.address && (userInfo.address.road || userInfo.address.pedestrian || userInfo.address.cycleway)) || null;
+
+          // calcular distancia entre tu posición y la ubicación devuelta por Nominatim (metros)
+          const dist = distanciaMetros(lat, lon, candidateLat, candidateLon);
+
+          // si hay nombre y distancia, 10m y la calle coincide (o calle no encontrada), anunciar nombre
+          let anunciarNombre = false;
+          if (candidateName && dist <= 10) {
+            // si tenemos ambas calles y difieren, posible otro lado de la calle (NO anunciar) 
+            if (userStreet && candidateStreet && userStreet !== candidateStreet) {
+              anunciarNombre = false;
+            } else {
+              anunciarNombre = true;
+            }
+          }
+
+          // Mensaje
+          if (anunciarNombre) {
+            const metrosTexto = Math.round(dist) + ' metros';
+            const texto = `Estás cerca de ${candidateName}, a aproximadamente ${metrosTexto}. Abro la ubicación en el mapa.`;
+            leerTexto(texto);
+            // abrir google maps en el punto devuelto (localizar el local)
+            const url = `https://www.google.com/maps?q=${candidateLat},${candidateLon}`;
+            window.open(url, '_blank');
+          } else {
+            // si no anunciamos nombre, damos coordenadas
+            // formatear coordenadas con 6 decimales para lectura clara
+            const latF = lat.toFixed(6);
+            const lonF = lon.toFixed(6);
+            const texto = `No se encontró un local lo suficientemente cercano o está al otro lado de la calle. Tus coordenadas son latitud ${latF}, longitud ${lonF}. Abro tu ubicación en el mapa.`;
+            leerTexto(texto);
+            const url = `https://www.google.com/maps?q=${lat},${lon}`;
+            window.open(url, '_blank');
+          }
+
+        } catch (err) {
+          console.error(err);
+          // Si falla el reverse geocoding, caer al fallback: dar coordenadas
+          const latF = lat.toFixed(6);
+          const lonF = lon.toFixed(6);
+          const texto = `No fue posible determinar el local cercano. Tus coordenadas son latitud ${latF}, longitud ${lonF}.`;
+          leerTexto(texto);
           const url = `https://www.google.com/maps?q=${lat},${lon}`;
           window.open(url, '_blank');
-        }, function() {
-          alert('No se pudo obtener la ubicación.');
-        });
-      } else {
-        alert('La geolocalización no está soportada en este navegador.');
-      }
+        }
+      }, function(error) {
+        console.error('Error geolocalización:', error);
+        alert('No se pudo obtener la ubicación.');
+      }, {
+        enableHighAccuracy: true,
+        maximumAge: 0,
+        timeout: 10000
+      });
     }
   </script>
 </body>

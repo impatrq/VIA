@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VIA</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="assets/css/estilos.css">
+</head>
+<body>
+  <h1 id="titulo" style="display:none;">VIA</h1>
+
+  <div class="btn-group" id="botones" style="display:none;">
+    <button id="btn-compartir">Compartir ubicación</button>
+    <button id="btn-donde">¿Dónde estoy?</button>
+  </div>
+
+  <!-- Paso 1: Usuario -->
+  <div id="usuario-form" class="form-step">
+    <label for="usuario-nombre">Tu nombre:</label>
+    <input type="text" id="usuario-nombre" placeholder="Tu nombre">
+    <label for="usuario-email">Tu correo electrónico:</label>
+    <input type="email" id="usuario-email" placeholder="Tu correo electrónico">
+    <button id="btn-continuar-usuario">Continuar</button>
+  </div>
+
+  <!-- Paso 2: Guía -->
+  <div id="mate-form" class="form-step" style="display:none;">
+    <label for="mate">Nombre de tu guía o persona de confianza:</label>
+    <input type="text" id="mate" placeholder="Nombre">
+    <label for="mate-email">Correo electrónico del guía:</label>
+    <input type="email" id="mate-email" placeholder="Correo electrónico">
+    <button id="btn-continuar-mate">Continuar</button>
+  </div>
+
+  <!-- JS -->
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+  <script src="assets/js/app.js"></script>
+</body>
+</html>

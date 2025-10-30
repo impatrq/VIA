@@ -1,0 +1,54 @@
+/* assets/css/estilos.css */
+body {
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: radial-gradient(circle at center, #FFD600, #FF6F00, #D500F9);
+  font-family: Arial, sans-serif;
+}
+h1 {
+  font-size: 80px;
+  color: #fff;
+  margin-bottom: 40px;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.4);
+}
+.btn-group {
+  display: flex;
+  gap: 20px;
+}
+button {
+  padding: 20px 40px;
+  font-size: 24px;
+  border: none;
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.85);
+  color: #000;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+  box-shadow: 2px 2px 8px rgba(0,0,0,0.2);
+}
+button:hover {
+  background-color: #ffe066;
+  transform: scale(1.05);
+}
+.form-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  color: white;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+}
+input {
+  font-size: 20px;
+  margin: 10px 0;
+  padding: 8px;
+  border-radius: 6px;
+  border: none;
+  outline: none;
+  width: 250px;
+}

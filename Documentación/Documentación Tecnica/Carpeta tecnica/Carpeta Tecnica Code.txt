@@ -1,0 +1,585 @@
+% Carpeta Técnica - VIA (versión LaTeX para Overleaf)
+\documentclass[12pt,a4paper]{article}
+
+% Paquetes
+\usepackage{float}
+\usepackage[utf8]{inputenc}   % Codificación de caracteres
+\usepackage[T1]{fontenc}      % Codificación de fuente
+\usepackage[spanish]{babel}   % Idioma español
+\usepackage{graphicx}         % Para imágenes
+\usepackage{grffile}          % Para nombres de archivo con espacios
+\usepackage{geometry}         % Márgenes de página
+\usepackage{hyperref}         % Para enlaces clicables
+\usepackage{caption}          % Para personalizar captions
+\usepackage{enumitem}         % Para listas personalizadas
+\usepackage{tikz} % carga TikZ
+\usetikzlibrary{shapes.geometric, arrows.meta, positioning, calc}
+
+\tikzset{
+  block/.style = {rectangle, draw, rounded corners, minimum width=3.5cm, minimum height=1cm, align=center, font=\small},
+  smallblock/.style = {rectangle, draw, rounded corners, minimum width=2.6cm, minimum height=0.9cm, align=center, font=\footnotesize},
+  io/.style = {ellipse, draw, minimum width=2.6cm, minimum height=0.9cm, align=center, font=\footnotesize},
+  arr/.style = {-{Latex[length=3mm]}, thick}
+}
+\geometry{margin=2.5cm}       % Márgenes de 2.5cm
+
+% Comando para ficha de integrante
+\newcommand{\integrante}[5]{%
+\noindent
+\begin{minipage}[t]{0.28\textwidth}
+  \includegraphics[width=\linewidth]{#1}
+\end{minipage}\hfill
+\begin{minipage}[c]{0.68\textwidth} % centrado vertical
+  \vspace{0pt}%
+  \textbf{#2}\\[3pt]
+  \textbf{DNI:} #3\\[3pt]
+  \textbf{Mail:} \href{mailto:#4}{#4}\\[6pt]
+  #5
+\end{minipage}%
+\vspace{1.5cm} % espacio entre integrantes
+}
+
+% Metadatos PDF
+\hypersetup{
+    pdftitle={Carpeta Técnica - VIA},
+    pdfauthor={Joaquín Granata et al.},
+    colorlinks=true,
+    linkcolor=blue,
+    citecolor=blue,
+    urlcolor=blue
+}
+
+\begin{document}
+
+% Portada personalizada
+\begin{titlepage}
+    \centering
+    \vspace*{1.5cm}
+    \includegraphics[width=0.6\linewidth]{VIA-Logo.png}\\[1.2cm]
+
+    {\LARGE\bfseries Carpeta Técnica \par}
+    \vspace{0.5cm}
+    {\Large VIA \par}
+    \vspace{1.5cm}
+
+    {\large Joaquín Granata \\ Bautista Paz \\ Milovan Radakoff \\ Caram Matías \\ Selene Ramírez\par}
+    \vfill
+
+    {\large 7° 2° Aviónica - Comisión A - 2025\par}
+    \vspace*{1cm}
+\end{titlepage}
+
+\clearpage
+
+% Índice
+\tableofcontents
+\clearpage
+
+% Contenido principal
+\section{Preámbulo}
+
+\subsection{¿Quiénes somos?}
+
+% Integrantes del Proyecto VIA
+\integrante{Grannyto.png}{GRANATA PARDO, Joaquín}{47806213}{granatajoaquin@gmail.com}{Desarrollo de página y documentación y ayudo a mis compañeros.}
+\integrante{Gordongo.png}{CARAM SODANO, Matías Leonel}{47686323}{matias.rapero2007@gmail.com}{Desarrollo de página web y ayudo a mis compañeros.}
+\integrante{Autista.png}{PAZ, Bautista Gabriel}{47833537}{bautistapaz504@gmail.com}{Programación de componentes y ayudo a mis compañeros.}
+\integrante{Milonja.png}{RADAKOFF, Milovan}{48157678}{miloradqw@gmail.com}{Armado del servidor y ayudo a mis compañeros.}
+\integrante{sele.png}{RAMIREZ NAHIR, Selene}{47144100}{seleneramirez@gmail.com}{Diseño e impresión de lentes y ayudo a mis compañeros.}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{Foto grupal.jpg}
+    \caption{Foto grupal del equipo de trabajo}
+    \label{fig:foto_grupal}
+\end{figure}
+
+\subsection{Contactos}
+\begin{itemize}
+    \item Mail del proyecto: \href{mailto:visioninteligenteasistida@gmail.com}{visioninteligenteasistida@gmail.com}
+    \item Página Web: Todavia no se esta hosteando un servidor, por lo que la pagina todavia no se halla operativa fuera de la computadora local
+    \item Cuenta de Instagram:
+     \url{https://www.instagram.com/vision_inteligente_asistida/}
+\end{itemize}
+
+\subsection{Docentes a cargo}
+\begin{itemize}
+    \item CARLASSARA, Fabricio
+    \item SOLOMEWICH, Federico
+    \item MEDINA, Sergio
+    \item BIANCO, Carlos
+    \item PALMIERI, Diego
+\end{itemize}
+\subsection{Información del proceso}
+\subsubsection{Links de documentación}
+\begin{itemize}
+    \item Link a Trello: \href{https://trello.com/b/mcL726dN/kanban}{https://trello.com/b/mcL726dN/kanban} 
+    \item Link a GitHub: \href{https://github.com/impatrq/VIA}{https://github.com/impatrq/VIA}
+\end{itemize}
+
+\subsubsection{Duración del proceso}
+\textbf{Fecha de inicio del proyecto}: 11/4/2025 (11 de abril de 2025)
+
+\textbf{Duración}: 27,71 semanas (La duración aun no es final, por lo que puede aumentar)
+
+\textbf{Horas de trabajo (personal)}:
+\begin{itemize}
+    \item GRANATA: 163 Horas 30 minutos (Los numeron aun no son finales)
+    \item CARAM: 141 Horas
+    \item PAZ: 151 Horas
+    \item RADAKOFF: 180 Horas 30 minutos
+    \item RAMIREZ: 155 Horas
+\end{itemize}
+\subsubsection{Lenguajes de programación usados}
+\begin{itemize}
+\item LaTex
+\item python y python3
+\item c++
+\item html
+\item css
+\item JavaScript
+\end{itemize}
+
+\subsubsection{Programas utilizados}
+\begin{itemize}
+\item Overleaf
+\item Arduino IDE
+\item Visual Studio Core
+\item Email JS
+\item Eleven Labs
+\item AutoCAD
+\item Raspberry image
+\item Raspberry Pi OS Trixie
+\item Termius
+\end{itemize}
+
+\section{Introducción}
+  \subsection{¿Qué es VIA?}
+  {\textbf{VIA} tiene como objetivo desarrollar un \textbf{sistema tecnológico de asistencia} que mejore la \textbf{seguridad} y \textbf{autonomía} de las \textbf{personas no videntes} al desplazarse por \textbf{entornos urbanos}, especialmente al \textbf{cruzar calles}. Busca reducir los \textbf{accidentes} que ocurren debido a la \textbf{falta de información visual} sobre el entorno, un problema que las ayudas tradicionales como los \textbf{bastones} o los \textbf{perros lazarillos} no siempre logran resolver. En muchos casos, el \textbf{oído} no es suficiente para detectar vehículos, sobre todo con la aparición de \textbf{autos eléctricos y silenciosos}, y los perros no pueden distinguir los \textbf{colores de los semáforos}. Por eso, \textbf{VIA} propone una \textbf{solución tecnológica moderna} que complemente estos métodos y ofrezca al usuario una \textbf{guía más precisa y confiable}.
+
+El sistema consiste en unos \textbf{lentes inteligentes} equipados con una \textbf{cámara} y un \textbf{sensor de proximidad} ubicados al frente, capaces de \textbf{captar y analizar el entorno en tiempo real}. La cámara identifica el \textbf{estado de los semáforos}, \textbf{objetos} o \textbf{personas cercanas}, mientras que el sensor detecta \textbf{obstáculos} o \textbf{posibles riesgos}. Toda esta información se transmite al usuario mediante \textbf{auriculares}, con \textbf{alertas auditivas} que varían en sonido o \textbf{mensajes de voz} según la situación. De esta forma, \textbf{VIA} ofrece una \textbf{herramienta práctica, accesible y fácil de usar}, pensada para aumentar la \textbf{independencia} de las personas no videntes y brindarles mayor \textbf{seguridad} al desplazarse. Su diseño \textbf{adaptable} y de \textbf{bajo costo} permite pensar en una \textbf{producción a gran escala}, contribuyendo así a una \textbf{movilidad más inclusiva y segura} para todos.}
+
+  \subsection{Beneficios y beneficiados}
+    \subsubsection{Beneficios}
+    La propuesta V.I.A. aporta una serie de ventajas técnicas, sociales y económicas. En primer lugar, mejora notablemente la seguridad personal de las personas no videntes al reducir el riesgo de accidentes en la vía pública. Esto se logra gracias al uso de una cámara instalada en los lentes que detecta los colores de los semáforos, las personas, los vehículos y los objetos cercanos, mientras que un sensor de proximidad por ultrasonido mide las distancias y alerta de posibles peligros. Toda esta información se procesa mediante un microcontrolador que traduce los datos visuales en señales auditivas, comunicadas al usuario a través de auriculares. Estas señales pueden ser pitidos de distinta frecuencia o mensajes de voz que informan sobre el entorno, permitiendo que el usuario actúe con tiempo y confianza.
+    \subsubsection{Beneficiados}
+    Los beneficiados principales del proyecto son las personas no videntes o con discapacidad visual, tanto parcial como total, que enfrentan grandes dificultades para movilizarse con seguridad en entornos urbanos. Este grupo de personas depende en gran medida de la audición, de bastones o de perros guía para poder desplazarse, pero estos métodos no siempre resultan suficientes o completamente confiables. Por ejemplo, el aumento de los vehículos eléctricos, que son más silenciosos, representa un nuevo riesgo para quienes se guían principalmente por el sonido. El proyecto V.I.A. busca brindarles una herramienta que complemente estas ayudas tradicionales y que mejore su calidad de vida, reduciendo los peligros que enfrentan al cruzar calles o al moverse por espacios con obstáculos. Además de los no videntes, también se ven beneficiados indirectamente sus familiares y cuidadores, quienes podrán contar con una mayor tranquilidad al saber que la persona cuenta con un sistema que aumenta su autonomía y seguridad. A nivel social, instituciones, fundaciones y organizaciones que trabajan con personas con discapacidad visual también se beneficiarían al poder incorporar esta tecnología en sus programas de asistencia.
+  \subsection{Estado del arte}
+  Actualmente, la asistencia a personas no videntes se basa en tecnologías como bastones inteligentes, perros guía, aplicaciones móviles de navegación y dispositivos portátiles con sensores ultrasónicos. Aunque estos métodos mejoran la seguridad, presentan limitaciones importantes: los bastones y wearables no identifican semáforos ni objetos en movimiento, los perros guía no pueden interpretar señales visuales, y las aplicaciones dependen de GPS y conexión a internet.  
+
+Algunos proyectos recientes integran visión artificial mediante cámaras portátiles, pero suelen requerir procesamiento en la nube, generando latencia y mayor complejidad. Frente a estas carencias, el proyecto \textbf{VIA} propone lentes inteligentes con cámara ESP32-CAM y sensor ultrasónico, procesando la información en una Raspberry Pi 5 para emitir alertas auditivas rapidas. Esta integración ofrece una asistencia más completa, precisa y autónoma, abordando las limitaciones de los sistemas existentes y mejorando la seguridad y movilidad en entornos urbanos.
+
+\section{Software}
+
+\subsection{Reconocimiento de Obstáculos}
+El software del sistema V.I.A. se centra en la interpretación del entorno y la traducción de esa información en señales auditivas comprensibles para el usuario. La detección de obstáculos se realiza mediante la lectura del sensor ultrasónico y el análisis de imágenes procesadas por la cámara ESP32-CAM. Ambos flujos de datos convergen en la Raspberry Pi, que determina la presencia, distancia y tipo de objeto, y decide el tipo de aviso que debe emitir.
+
+\subsubsection{Reconocimiento de Distancias}
+
+\paragraph{Cómo leer la distancia}
+El reconocimiento de distancias se lleva a cabo a través del sensor ultrasónico ubicado en el frente de los lentes. El sensor emite un pulso sonoro de alta frecuencia que rebota al chocar con un objeto y regresa al emisor. El tiempo de retorno se mide y, mediante la fórmula $d = \frac{v \times t}{2}$, donde $v$ representa la velocidad del sonido en el aire (aproximadamente 343 m/s), se calcula la distancia entre el usuario y el objeto detectado. Estos datos son enviados a la Raspberry Pi, que los convierte en alertas auditivas proporcionales a la cercanía del obstáculo.
+
+\paragraph{Componentes usados para leer la distancia}
+El componente principal es el sensor ultrasónico HC-SR04, conectado directamente a la Raspberry Pi. Este módulo se alimenta con 5V y utiliza dos pines digitales: uno para emitir el pulso (Trigger) y otro para recibir el eco (Echo). La Raspberry Pi mide el tiempo entre ambos eventos y realiza el cálculo correspondiente. Los resultados se procesan varias veces por segundo para obtener una medición continua y confiable de la distancia, evitando retrasos o lecturas falsas. En caso de lecturas inestables, se aplica un filtrado mediante promedio móvil para estabilizar la información antes de generar una alerta.
+
+\paragraph{Cálculos usados para leer la distancia}
+El cálculo principal se basa en la relación entre el tiempo de eco y la distancia recorrida por el sonido.  
+\[
+d = \frac{v \times t}{2}
+\]  
+Donde $d$ es la distancia (en metros), $v$ la velocidad del sonido (343 m/s) y $t$ el tiempo total del viaje del sonido (en segundos). Para mayor precisión, el sistema corrige ligeramente el valor de $v$ dependiendo de la temperatura ambiental, aplicando la fórmula:  
+\[
+v = 331 + 0.6 \times T
+\]  
+donde $T$ representa la temperatura en grados Celsius. Con esta corrección, el sistema mantiene lecturas más precisas en distintos entornos. Las distancias se clasifican en tres zonas:  
+\begin{itemize}
+    \item Menor a 1.5 m: zona de peligro, pitidos rápidos.  
+    \item Entre 1.5 m y 3 m: zona de advertencia, pitidos lentos.  
+    \item Mayor a 3 m: zona segura, sin alerta.  
+\end{itemize}
+
+\subsubsection{Reconocimiento de Objetos}
+
+\paragraph{Cómo reconocer objetos}
+El reconocimiento de objetos es responsabilidad de la cámara ESP32-CAM, que cuenta con un firmware optimizado para ejecutar una red neuronal ligera de detección de objetos. Esta red permite identificar figuras comunes del entorno urbano como personas, bicicletas, autos, y los colores de los semáforos. Cuando se detecta un elemento relevante, la cámara genera una etiqueta (por ejemplo, “persona”, “vehículo”, “semáforo verde”) y la envía a la Raspberry Pi mediante comunicación Bluetooth. La Raspberry interpreta esta información y reproduce un mensaje de voz o alerta sonora correspondiente. Este proceso se repite de manera continua para mantener actualizada la información del entorno.
+
+\paragraph{Componentes usados para reconocer obstáculos}
+El módulo principal es la cámara ESP32-CAM, equipada con un sensor OV2640. Este módulo integra un microcontrolador ESP32 con capacidad de conexión Bluetooth, Wi-Fi y procesamiento local. El software cargado en la cámara incluye librerías de visión artificial basadas en modelos de detección de objetos simplificados (como MobileNet o YOLO-tiny adaptado), entrenados previamente para reconocer formas y colores básicos. Gracias a esto, el procesamiento se realiza directamente en la cámara, reduciendo la carga sobre la Raspberry Pi y eliminando la necesidad de servidores externos. El flujo de información es eficiente y se limita a enviar únicamente los resultados de la detección.
+
+\paragraph{Listado de objetos a detectar}
+El modelo implementado en la ESP32-CAM está entrenado para reconocer los siguientes elementos principales:
+\begin{itemize}
+    \item Personas y peatones.
+    \item Automóviles y motocicletas.
+    \item Bicicletas.
+    \item Semáforos (rojo, verde, amarillo).
+    \item Obstáculos estáticos (paredes, postes, bancos, etc.).
+\end{itemize}
+Estos objetos fueron seleccionados por su relevancia en la movilidad urbana y su impacto directo en la seguridad del usuario. El sistema también puede ampliar esta lista en futuras versiones mediante actualizaciones de firmware.
+
+\subsection{Avisos y Alertas}
+
+El sistema V.I.A. comunica la información procesada mediante señales auditivas diseñadas para ser intuitivas y no invasivas. Existen dos tipos principales de alertas: las de distancia, derivadas del sensor ultrasónico, y las de reconocimiento, generadas por la cámara y la Raspberry Pi. Ambas se reproducen en los auriculares del usuario, priorizando las más críticas.
+
+\subsubsection{Aviso y alerta de distancias}
+
+\paragraph{Tipos de avisos}
+Los avisos de distancia se emiten en forma de pitidos cuya frecuencia o velocidad varía según la cercanía del objeto. Por ejemplo:
+\begin{itemize}
+    \item Pitido continuo y rápido: obstáculo muy cercano.
+    \item Pitido intermitente lento: objeto a distancia media.
+    \item Sin pitido: no hay objetos cercanos detectados.
+\end{itemize}
+Esta representación sonora permite al usuario interpretar la proximidad sin necesidad de memorizar comandos ni usar pantallas visuales.
+
+\paragraph{Tipos de alertas}
+En caso de detección repentina o movimiento rápido de un objeto hacia el usuario, la Raspberry Pi genera una alerta especial mediante un sonido distinto, más grave y prolongado, acompañado opcionalmente por un mensaje de voz que advierte la dirección o naturaleza del peligro (por ejemplo: “vehículo acercándose” o “persona al frente”). Estas alertas tienen prioridad sobre los pitidos comunes para garantizar una reacción inmediata.
+
+\subsubsection{Aviso y alerta de objetos}
+
+\paragraph{Tipos de avisos}
+Los avisos de objetos se generan cuando la cámara reconoce un elemento importante en el entorno. La Raspberry traduce la etiqueta enviada por la cámara en un mensaje auditivo claro, por ejemplo: “semáforo en rojo”, “persona adelante” o “bicicleta cruzando”. Este tipo de aviso ayuda al usuario a identificar qué ocurre a su alrededor, más allá de la simple distancia.
+
+\paragraph{Tipos de alertas}
+Las alertas se diferencian de los avisos por su urgencia. Cuando un objeto detectado implica riesgo (por ejemplo, un vehículo en movimiento o un semáforo en rojo), el sistema emite una alerta prioritaria con un tono más fuerte o una frase de advertencia. Si el evento no representa peligro inmediato, la alerta se omite y solo se comunica la detección de forma informativa. Esta jerarquía evita sobrecargar al usuario con mensajes innecesarios y mantiene la atención en las situaciones realmente importantes.
+
+\subsubsection{Diagrama de solución}
+\begin{figure}[H]
+          \centering
+          \includegraphics[width=0.9\linewidth]{Diagrama de solución.png}
+          \caption{Diagrama de solución}
+          \label{fig:diagrama-solución}
+        \end{figure}
+\subsection{Lentes}
+Los lentes constituyen la base estructural del sistema V.I.A. y cumplen la función de soporte físico para los módulos electrónicos principales: la cámara ESP32-CAM, el sensor ultrasónico y el cableado interno que conecta con la unidad de procesamiento (Raspberry Pi). Este diseño fue pensado para lograr la mayor comodidad y autonomía posibles, reduciendo al mínimo el número de dispositivos externos y eliminando la necesidad de conexión a servidores o redes complejas. El armazón fue elegido por su ligereza y resistencia, permitiendo fijar los módulos sin afectar el equilibrio ni la estética. En la parte lateral se ubica la cámara, orientada hacia adelante para captar el entorno, mientras que en el centro del puente de los lentes se instala el sensor ultrasónico, encargado de medir la distancia a los objetos. Los cables se distribuyen internamente por las patillas, donde también puede alojarse una pequeña batería recargable. De este modo, el usuario obtiene un conjunto compacto, autónomo y ergonómico, ideal para uso cotidiano en entornos urbanos.
+
+\subsubsection{Modelos y avances}
+Durante el desarrollo del proyecto se evaluaron distintos modelos de lentes hasta llegar a un diseño funcional que combina comodidad, estabilidad y espacio suficiente para integrar los módulos electrónicos. Los primeros prototipos utilizaron monturas convencionales de plástico con fijaciones externas para la cámara, mientras que las versiones más recientes incorporan canales internos para el cableado y sujeciones discretas mediante impresión 3D.  
+Entre los avances más importantes se destacan:
+\begin{itemize}
+  \item Integración más firme del sensor ultrasónico en el puente central sin alterar la forma ni la visibilidad.
+  \item Reducción del peso total mediante el uso de materiales plásticos livianos y refuerzos localizados.
+  \item Posibilidad de incorporar baterías planas recargables dentro de las patillas.
+  \item Distribución optimizada del cableado para evitar tirones o incomodidades al usuario.
+\end{itemize}
+
+\subsubsection{Cambios y diferencias respecto a lentes convencionales}
+A diferencia de unos lentes tradicionales, los del sistema V.I.A. incorporan componentes electrónicos activos. Esto implica modificaciones tanto estructurales como funcionales:
+\begin{itemize}
+  \item \textbf{Estructura interna:} canalización para cables y espacio para batería.
+  \item \textbf{Peso:} levemente superior (aprox. +20\,g) debido a los sensores y al soporte de cámara.
+  \item \textbf{Función principal:} además de visión óptica, los lentes adquieren un rol sensorial y asistivo.
+  \item \textbf{Mantenimiento:} requieren limpieza cuidadosa y carga periódica de la batería.
+\end{itemize}
+Pese a estas diferencias, el objetivo fue conservar la estética de unas gafas comunes, evitando que el diseño evidencie la presencia de los módulos tecnológicos.
+
+\subsection{Auriculares}
+Los auriculares cumplen la función de canal auditivo del sistema V.I.A., transmitiendo al usuario los avisos generados por la cámara y los sensores. Se emplean principalmente para reproducir sonidos de advertencia o mensajes de voz que informan la detección de obstáculos, vehículos o señales luminosas.
+
+El tipo de auricular puede variar según las preferencias del usuario:
+\begin{itemize}
+  \item \textbf{Auriculares con cable:} ofrecen conexión directa a la Raspberry Pi, sin requerir configuración adicional.
+  \item \textbf{Auriculares Bluetooth:} permiten libertad de movimiento y reducen el número de cables visibles. Requieren emparejamiento inicial mediante el menú Bluetooth del sistema.
+\end{itemize}
+
+El sistema está calibrado para emitir sonidos diferenciables según la distancia del objeto detectado. Por ello, es importante que los auriculares no aíslen completamente el ruido ambiente, de modo que el usuario pueda seguir percibiendo el entorno sonoro.
+
+\subsection{Módulos}
+El sistema V.I.A. se compone de tres módulos electrónicos principales: la cámara ESP32-CAM, el sensor ultrasónico HC-SR04 y la unidad de procesamiento Raspberry Pi 5. A continuación se describen sus características y funciones.
+
+\subsubsection{ESP32-CAM}
+\paragraph{Cómo funciona}
+La ESP32-CAM es un microcontrolador con cámara integrada que combina conectividad Wi-Fi y Bluetooth. Su núcleo dual permite procesar imágenes y ejecutar tareas de red simultáneamente. El módulo incluye una cámara OV2640 de 2\,MP, un lector de tarjetas microSD y pines de entrada/salida para control externo.
+
+\paragraph{Usos en el proyecto}
+En el sistema V.I.A., la ESP32-CAM cumple el rol de \textbf{sensor visual principal}. Captura imágenes del entorno y las transmite a la Raspberry Pi para su análisis mediante inteligencia artificial. Además, puede enviar las imágenes en tiempo real a través del servidor local, permitiendo visualizar la escena desde un navegador en la red del dispositivo.  
+La ESP32-CAM también puede procesar detecciones básicas en caso de que la Raspberry Pi no esté disponible, garantizando un funcionamiento mínimo autónomo.
+
+\paragraph{Hojas técnicas}
+La hoja técnica de la ESP32-CAM se encuentra en el siguiente enlace:  
+\url{https://www.handsontec.com/dataspecs/module/ESP32-CAM.pdf}
+
+\subsubsection{Sensor ultrasónico}
+\paragraph{Cómo funciona}
+El sensor ultrasónico HC-SR04 mide la distancia a un objeto mediante ondas de sonido de alta frecuencia. Emite un pulso ultrasónico y mide el tiempo que tarda en reflejarse el eco en un obstáculo cercano. Utiliza el tiempo transcurrido para calcular la distancia, aplicando la fórmula:
+\[
+Distancia = \frac{Tiempo \times Velocidad\ del\ sonido}{2}
+\]
+El resultado se entrega en centímetros con buena precisión en rangos de hasta 3--4 metros.
+
+\paragraph{Usos en el proyecto}
+En el sistema V.I.A., el HC-SR04 detecta la proximidad de objetos que puedan representar un riesgo de colisión para el usuario. Cuando se detecta un obstáculo, la Raspberry Pi traduce la distancia en una señal auditiva de diferente frecuencia o patrón, generando así un aviso inmediato.  
+Su ubicación central en el puente de los lentes permite una medición alineada con la dirección de la mirada.
+
+\paragraph{Hojas técnicas}
+La hoja técnica del sensor HC-SR04 se encuentra en el siguiente enlace:  
+\url{https://agelectronica.lat/pdfs/textos/U/ULTRASONIC-HC-SR04.PDF}
+
+\subsubsection{Raspberry Pi 5}
+\paragraph{Cómo funciona}
+La Raspberry Pi 5 es una microcomputadora de placa única (SBC) equipada con un procesador ARM Cortex-A76 de cuatro núcleos a 2.4\,GHz, memoria RAM LPDDR4X y puertos para video, red y periféricos.  
+En el proyecto V.I.A. actúa como el \textbf{núcleo de procesamiento central}, ejecutando los algoritmos de detección de objetos y controlando la comunicación con los periféricos (cámara, sensores, auriculares y página web).  
+Su sistema operativo, basado en Linux, permite ejecutar scripts en Python que manejan la visión artificial, las alertas sonoras y la gestión de red (modo punto de acceso o cliente Wi-Fi).
+
+\paragraph{Usos en el proyecto}
+\begin{itemize}
+  \item Procesar las imágenes enviadas por la ESP32-CAM y aplicar modelos de inteligencia artificial para identificar objetos o señales relevantes.
+  \item Controlar la emisión de alertas auditivas según los resultados de detección y la distancia medida por el sensor ultrasónico.
+  \item Hospedar el servidor local accesible desde el navegador (\texttt{http://192.168.4.1:8080}) para monitorear el sistema.
+  \item Gestionar la conexión con auriculares Bluetooth y la comunicación con el módulo web para compartir ubicación o recibir asistencia remota.
+\end{itemize}
+
+\paragraph{Hojas técnicas}
+La hoja técnica de la Raspberry Pi 5 se encuentra en el siguiente enlace:  
+\url{https://datasheets.raspberrypi.com/rpi5/raspberry-pi-5-product-brief.pdf}
+
+\section{Páginas de Web}
+  \subsection{Página web del proyecto}
+    \subsubsection{Función}
+    \subsubsection{Explicación de la pagina}
+    \subsubsection{Código}
+  \subsection{Página de asistencia}
+    \subsubsection{Función}
+      La pagina de asistencia, como su nombre lo incica, tiene la función de asistir al usuario con distintas herramientas de ubicacion y seguridad. La pagina permite al usuario conocer su ubicación, pedir asistencia o enviar ubicación a la persona designada como ¨De confianza¨. La idea es tener una pagina con interfaz simple para que el usuario no se pierda o confunda, manteniendo un buen nivel de confianza.
+    \subsubsection{Partes de la pagina}
+      \paragraph{Funciones}
+        \subparagraph{Interfaz} La interfaz de la pagina esta divida en 3 secciones: La informacion del usuario, la informacion del guia designado y el area de acciones.
+
+        \begin{figure}[h!]
+          \centering
+          \includegraphics[width=0.5\linewidth]{Interfaz Información de guia.png}
+          \caption{Interfaz para la información de guia}
+          \label{fig:interfaz-guia}
+        \end{figure}
+        \begin{figure}[h!]
+          \centering
+          \includegraphics[width=0.5\linewidth]{Interfaz Información de usuario.png}
+          \caption{Interfaz para la información de usuario}
+          \label{fig:interfaz-usuario}
+        \end{figure}
+
+        La información que pide es simple y accesible, pero clave para el funcionamiento de la pagina. La pagina pedira el nombre y dirección de Mail del usuario y del guia respectivamente. Una vez insertada toda la información pedida, se enviara un mail de confirmación al celular del guia, confirmando ambos mails. Una vez hecho esto, se pasara a la siguiente sección: El area de acciones.
+
+        La interfaz del area de acción se usa para que el usuario pueda interactuar con la persona de confianza. Tiene dos opciones: Compartir ubicación o Conocer mi ubicación
+            
+        \subparagraph{Ubicación} La función de ubicación permite al usuario conocer su ubicación exacta de manera simple y directa. La ubicación en estos casos sera la del usuario. En esta interfaz, el usuario podra elegir entre ver su ubicación.
+        \subparagraph{Contacto} La función de contacto permite al usuario enviar su ubicación al guía de confianza previamente registrado. Esta función asegura que el usuario pueda ser asistido en tiempo real.
+    \subsubsection{Código}
+    \begin{verbatim}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Via</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background: radial-gradient(circle at center, #FFD600, #FF6F00, #D500F9);
+      font-family: Arial, sans-serif;
+    }
+    h1 {
+      font-size: 80px;
+      color: #fff;
+      margin-bottom: 40px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.4);
+    }
+    .btn-group {
+      display: flex;
+      gap: 20px;
+    }
+    button {
+      padding: 20px 40px;
+      font-size: 24px;
+      border: none;
+      border-radius: 10px;
+      background-color: rgba(255, 255, 255, 0.85);
+      color: #000;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.2s;
+      box-shadow: 2px 2px 8px rgba(0,0,0,0.2);
+    }
+    button:hover {
+      background-color: #ffe066;
+      transform: scale(1.05);
+    }
+    .form-step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      color: white;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+    }
+    input {
+      font-size: 20px;
+      margin: 10px 0;
+      padding: 8px;
+      border-radius: 6px;
+      border: none;
+      outline: none;
+      width: 250px;
+    }
+  </style>
+</head>
+<body>
+  <h1 id="titulo" style="display:none;">VIA</h1>
+  <div class="btn-group" id="botones" style="display:none;">
+    <button onclick="compartirUbicacion()">Compartir ubicación</button>
+    <button onclick="abrirUbicacion()">¿Dónde estoy?</button>
+  </div>
+  <!-- Paso 1: Usuario -->
+  <div id="usuario-form" class="form-step">
+    <label for="usuario-nombre">Tu nombre:</label>
+    <input type="text" id="usuario-nombre" placeholder="Tu nombre">
+    <label for="usuario-email">Tu correo electrónico:</label>
+    <input type="email" id="usuario-email" placeholder="Tu correo electrónico">
+    <button onclick="guardarUsuario()">Continuar</button>
+  </div>
+  <!-- Paso 2: Guía -->
+  <div id="mate-form" class="form-step" style="display:none;">
+    <label for="mate">Nombre de tu guía o persona de confianza:</label>
+    <input type="text" id="mate" placeholder="Nombre">
+    <label for="mate-email">Correo electrónico del guía:</label>
+    <input type="email" id="mate-email" placeholder="Correo electrónico">
+    <button onclick="guardarMate()">Continuar</button>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+  <script>
+    emailjs.init('5o0oirlCIaC5KwqQq'); // Reemplaza con tu user_id de EmailJS
+
+    // --- NUEVO: Función para leer en voz alta ---
+    function leerTexto(texto) {
+      const synth = window.speechSynthesis;
+      if (synth.speaking) synth.cancel();
+      const utter = new SpeechSynthesisUtterance(texto);
+      utter.lang = 'es-ES';
+      synth.speak(utter);
+    }
+
+    // --- NUEVO: Asignar eventos a botones y textos ---
+    window.addEventListener('DOMContentLoaded', () => {
+      // Botones principales
+      document.querySelectorAll('button').forEach(btn => {
+        btn.addEventListener('focus', () => leerTexto(btn.textContent));
+        btn.addEventListener('mouseenter', () => leerTexto(btn.textContent));
+      });
+      // Etiquetas de los formularios
+      document.querySelectorAll('label').forEach(lbl => {
+        lbl.addEventListener('focus', () => leerTexto(lbl.textContent));
+        lbl.addEventListener('mouseenter', () => leerTexto(lbl.textContent));
+      });
+      // Inputs: leer el placeholder al enfocar
+      document.querySelectorAll('input').forEach(inp => {
+        inp.addEventListener('focus', () => leerTexto(inp.placeholder));
+      });
+    });
+
+    let usuarioNombre = "";
+    let usuarioEmail = "";
+    let mateNombre = "";
+    let mateEmail = "";
+
+    function guardarUsuario() {
+      const nombreInput = document.getElementById('usuario-nombre');
+      const emailInput = document.getElementById('usuario-email');
+      if (nombreInput.value.trim() === "") {
+        alert("Por favor, escribe tu nombre.");
+        return;
+      }
+      if (emailInput.value.trim() === "" || !emailInput.value.includes('@')) {
+        alert("Por favor, escribe un correo electrónico válido.");
+        return;
+      }
+      usuarioNombre = nombreInput.value.trim();
+      usuarioEmail = emailInput.value.trim();
+      document.getElementById('usuario-form').style.display = 'none';
+      document.getElementById('mate-form').style.display = '';
+    }
+
+    function guardarMate() {
+      const input = document.getElementById('mate');
+      const emailInput = document.getElementById('mate-email');
+      if (input.value.trim() === "") {
+        alert("Por favor, escribe el nombre de tu guía o persona de confianza.");
+        return;
+      }
+      if (emailInput.value.trim() === "" || !emailInput.value.includes('@')) {
+        alert("Por favor, escribe un correo electrónico válido.");
+        return;
+      }
+      mateNombre = input.value.trim();
+      mateEmail = emailInput.value.trim();
+
+      // Enviar correo de confirmación al guía, incluyendo el nombre del usuario
+      emailjs.send('service_granata', 'template_120f5nn', {
+        to_name: mateNombre,
+        to_email: mateEmail,
+        from_name: usuarioNombre,
+        from_email: usuarioEmail
+      })
+      .then(function(response) {
+        alert('Correo de confirmación enviado a ' + mateEmail);
+        document.getElementById('mate-form').style.display = 'none';
+        document.getElementById('titulo').style.display = '';
+        document.getElementById('botones').style.display = '';
+      }, function(error) {
+        alert('No se pudo enviar el correo de confirmación. Intenta nuevamente.');
+      });
+    }
+
+    function compartirUbicacion() {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(position) {
+          const lat = position.coords.latitude;
+          const lon = position.coords.longitude;
+          const url = `https://www.google.com/maps?q=${lat},${lon}`;
+          // Enviar ubicación por correo al guía, incluyendo el nombre del usuario
+          emailjs.send('service_granata', 'template_120f5nn', {
+            to_name: mateNombre,
+            to_email: mateEmail,
+            from_name: usuarioNombre,
+            from_email: usuarioEmail,
+            location_url: url
+          })
+          .then(function(response) {
+            alert('¡Ubicación enviada por correo a ' + mateEmail + '!');
+          }, function(error) {
+            alert('No se pudo enviar la ubicación por correo. Intenta nuevamente.');
+          });
+        }, function() {
+          alert('No se pudo obtener la ubicación.');
+        });
+      } else {
+        alert('La geolocalización no está soportada en este navegador.');
+      }
+    }
+
+    function abrirUbicacion() {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(position) {
+          const lat = position.coords.latitude;
+          const lon = position.coords.longitude;
+          const url = `https://www.google.com/maps?q=${lat},${lon}`;
+          window.open(url, '_blank');
+        }, function() {
+          alert('No se pudo obtener la ubicación.');
+        });
+      } else {
+        alert('La geolocalización no está soportada en este navegador.');
+      }
+    }
+  </script>
+</body>
+</html>
+\end{verbatim}
+
+\section{Bibliografías}
+
+\end{document}

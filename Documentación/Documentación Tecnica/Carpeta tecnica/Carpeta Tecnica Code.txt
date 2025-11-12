@@ -120,15 +120,15 @@
 \subsubsection{Duración del proceso}
 \textbf{Fecha de inicio del proyecto}: 11/4/2025 (11 de abril de 2025)
 
-\textbf{Duración}: 27,71 semanas (La duración aun no es final, por lo que puede aumentar)
+\textbf{Duración}: 29,14 semanas 
 
 \textbf{Horas de trabajo (personal)}:
 \begin{itemize}
-    \item GRANATA: 163 Horas 30 minutos (Los numeron aun no son finales)
-    \item CARAM: 141 Horas
-    \item PAZ: 151 Horas
-    \item RADAKOFF: 180 Horas 30 minutos
-    \item RAMIREZ: 155 Horas
+    \item GRANATA: 210 Horas 30 minutos (Los numeron aun no son finales)
+    \item CARAM: 201 Horas
+    \item PAZ: 202 Horas 15 minutos
+    \item RADAKOFF: 208 Horas 30 minutos
+    \item RAMIREZ: 205 Horas
 \end{itemize}
 \subsubsection{Lenguajes de programación usados}
 \begin{itemize}
@@ -243,11 +243,18 @@ Los avisos de objetos se generan cuando la cámara reconoce un elemento importan
 \paragraph{Tipos de alertas}
 Las alertas se diferencian de los avisos por su urgencia. Cuando un objeto detectado implica riesgo (por ejemplo, un vehículo en movimiento o un semáforo en rojo), el sistema emite una alerta prioritaria con un tono más fuerte o una frase de advertencia. Si el evento no representa peligro inmediato, la alerta se omite y solo se comunica la detección de forma informativa. Esta jerarquía evita sobrecargar al usuario con mensajes innecesarios y mantiene la atención en las situaciones realmente importantes.
 
-\subsubsection{Diagrama de solución}
+\subsubsection{Diagrama de Solución}
 \begin{figure}[H]
           \centering
           \includegraphics[width=0.9\linewidth]{Diagrama de solución.png}
           \caption{Diagrama de solución}
+          \label{fig:diagrama-solución}
+        \end{figure}
+\subsubsection{Diagrama de Flujo}
+ \begin{figure}[H]
+          \centering
+          \includegraphics[width=0.75\linewidth]{Diagrama de Flujo.pdf}
+          \caption{Diagrama de Flujo}
           \label{fig:diagrama-solución}
         \end{figure}
 \subsection{Lentes}
@@ -338,6 +345,7 @@ La hoja técnica de la Raspberry Pi 5 se encuentra en el siguiente enlace:
     \subsubsection{Función}
     \subsubsection{Explicación de la pagina}
     \subsubsection{Código}
+
   \subsection{Página de asistencia}
     \subsubsection{Función}
       La pagina de asistencia, como su nombre lo incica, tiene la función de asistir al usuario con distintas herramientas de ubicacion y seguridad. La pagina permite al usuario conocer su ubicación, pedir asistencia o enviar ubicación a la persona designada como ¨De confianza¨. La idea es tener una pagina con interfaz simple para que el usuario no se pierda o confunda, manteniendo un buen nivel de confianza.
@@ -578,7 +586,7 @@ La hoja técnica de la Raspberry Pi 5 se encuentra en el siguiente enlace:
   </script>
 </body>
 </html>
-\end{verbatim}
+    \end{verbatim}
 
 \section{Bibliografías}
 

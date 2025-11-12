@@ -1,0 +1,153 @@
+\documentclass[12pt,a4paper]{article}
+
+% Paquetes
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{geometry}
+\usepackage{titlesec}
+\usepackage{xcolor}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+
+\geometry{margin=2.5cm}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{Proyecto V.I.A.}
+\fancyhead[R]{Manual de Usuario}
+\fancyfoot[C]{\thepage}
+
+\titleformat{\section}{\Large\bfseries}{\thesection.}{0.5em}{}
+\titleformat{\subsection}{\large\bfseries}{\thesubsection.}{0.5em}{}
+
+\title{\textbf{Manual de Usuario}\\Proyecto V.I.A.}
+\author{Equipo de Desarrollo V.I.A.}
+\date{}
+
+\begin{document}
+
+\maketitle
+\thispagestyle{empty}
+\vspace{2cm}
+
+\begin{center}
+\includegraphics[width=0.55\textwidth]{VIA-Logo.png}
+\end{center}
+
+\newpage
+\tableofcontents
+\newpage
+
+\section{Introducción}
+El presente documento corresponde al \textbf{Manual de Usuario} del sistema \textbf{V.I.A. (Visión Inteligente Asistida)}.  
+Su propósito es ofrecer una guía clara y sencilla para poner en funcionamiento el dispositivo, sin necesidad de conocimientos avanzados en informática o programación.
+
+El sistema \textbf{V.I.A.} fue desarrollado como una herramienta de apoyo para personas con discapacidad visual o movilidad reducida. Combina sensores ópticos, ultrasónicos y procesamiento local en una \textbf{Raspberry Pi 5} para detectar obstáculos cercanos y emitir alertas sonoras al usuario en tiempo real.
+
+\section{Componentes principales}
+\subsection{Lentes inteligentes}
+Los lentes alojan los sensores del sistema:
+\begin{itemize}
+    \item \textbf{Cámara ESP32-CAM:} capta imágenes del entorno.
+    \item \textbf{Sensor ultrasónico HC-SR04:} mide la distancia a los objetos cercanos.
+\end{itemize}
+Los módulos están integrados en el armazón y conectados mediante un cable a la unidad central.
+
+\subsection{Auriculares Bluetooth}
+Los auriculares son el medio por el cual el usuario recibe las alertas.  
+El sistema se conecta automáticamente al encenderse, siempre que los auriculares estén emparejados una vez.
+
+\subsection{Unidad de procesamiento (Raspberry Pi 5)}
+Es el “cerebro” del sistema. Contiene el software de detección, comunicación y control.  
+Al iniciar, se encarga de conectar todos los componentes y mostrar una interfaz visual en pantalla o en otro dispositivo.
+
+\section{Requisitos previos}
+Antes de usar el sistema, asegúrese de:
+\begin{itemize}
+    \item Contar con todos los módulos correctamente conectados (lentes, cámara, sensor y auriculares).
+    \item Tener una fuente de alimentación estable (5V / 3A).
+    \item Haber realizado el emparejamiento inicial de los auriculares Bluetooth (solo la primera vez).
+\end{itemize}
+
+\section{Encendido y funcionamiento}
+\subsection{Inicio automático}
+Al conectar la Raspberry Pi:
+\begin{enumerate}
+    \item Se inicia automáticamente el sistema V.I.A.  
+    \item En pantalla (o en un dispositivo conectado) aparecerá la interfaz principal con opciones como:
+    \begin{itemize}
+        \item \textbf{Iniciar detección}
+        \item \textbf{Ver cámara}
+        \item \textbf{Estado del sistema}
+        \item \textbf{Apagar o reiniciar}
+    \end{itemize}
+    \item Los auriculares emitirán un sonido de confirmación al estar listos.
+\end{enumerate}
+
+\subsection{Modo detección}
+Al presionar el botón \textbf{“Iniciar detección”} en la interfaz:
+\begin{itemize}
+    \item El sistema comienza a analizar el entorno con la cámara y el sensor ultrasónico.  
+    \item Si se detecta un obstáculo cercano, los auriculares emiten un tono o mensaje de advertencia.  
+    \item El nivel de alerta varía según la distancia detectada.
+\end{itemize}
+
+\subsection{Modo monitoreo (opcional)}
+Si el sistema está conectado a una pantalla o red local, se puede acceder desde un navegador en:
+\begin{center}
+\textbf{http://via.local}
+\end{center}
+Allí es posible visualizar las imágenes y el estado de los sensores en tiempo real.
+
+\section{Solución de problemas}
+\begin{itemize}
+    \item \textbf{No se escuchan las alertas:}  
+    Verifique que los auriculares estén encendidos y dentro del alcance. Si es necesario, repita el emparejamiento desde la interfaz.
+
+    \item \textbf{El sistema no inicia:}  
+    Compruebe la fuente de alimentación y los cables de conexión. Si la pantalla muestra un error, reinicie el dispositivo.
+
+    \item \textbf{El sensor no responde:}  
+    Revise que el sensor ultrasónico esté limpio y firmemente conectado. Evite ambientes húmedos o con polvo.
+
+    \item \textbf{La cámara no muestra imagen:}  
+    Verifique que la cámara esté correctamente orientada y que no haya objetos cubriendo la lente.
+\end{itemize}
+
+\section{Mantenimiento básico}
+\begin{itemize}
+    \item Limpie la cámara y el sensor con un paño seco.  
+    \item Guarde los lentes en un lugar seco y seguro.  
+    \item Actualice el software del sistema cuando la interfaz lo indique.  
+    \item No conecte ni desconecte módulos con el sistema encendido.
+\end{itemize}
+
+\section{Seguridad}
+\begin{itemize}
+    \item No exponga el sistema al agua o altas temperaturas.  
+    \item Mantenga los cables y conexiones en buen estado.  
+    \item Utilice solo cargadores certificados de 5V / 3A.  
+    \item No manipule la Raspberry Pi sin desconectarla previamente.
+\end{itemize}
+
+\section{Datos técnicos}
+\begin{itemize}
+    \item \textbf{Procesador:} Raspberry Pi 5 (Quad-Core Cortex-A76)
+    \item \textbf{Cámara:} ESP32-CAM OV2640
+    \item \textbf{Sensor:} HC-SR04
+    \item \textbf{Conectividad:} WiFi 2.4 GHz, Bluetooth 5.0
+    \item \textbf{Alimentación:} 5V / 3A
+    \item \textbf{Software:} Python 3.11, OpenCV, Flask
+\end{itemize}
+
+\section{Soporte técnico}
+En caso de inconvenientes, comuníquese con el equipo del Proyecto V.I.A. mediante los canales institucionales o correo electrónico del grupo de desarrollo.
+
+\vfill
+\begin{center}
+\textit{“VIA – Con nosotros, cada paso es un paso seguro.”}
+\end{center}
+
+\end{document}

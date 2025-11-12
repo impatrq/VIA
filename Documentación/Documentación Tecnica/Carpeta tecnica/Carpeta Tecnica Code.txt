@@ -341,10 +341,121 @@ La hoja técnica de la Raspberry Pi 5 se encuentra en el siguiente enlace:
 \url{https://datasheets.raspberrypi.com/rpi5/raspberry-pi-5-product-brief.pdf}
 
 \section{Páginas de Web}
-  \subsection{Página web del proyecto}
-    \subsubsection{Función}
-    \subsubsection{Explicación de la pagina}
-    \subsubsection{Código}
+\subsection{Página web del proyecto}
+
+\subsubsection{Función}
+
+La página web del proyecto cumple funciones de presentación, interacción y estética dinámica. 
+Se divide en tres partes principales:
+
+\begin{itemize}
+  \item \textbf{Navegación y encabezado:} barra superior fija con el logo y enlaces principales; garantiza accesibilidad, responsividad y visibilidad sobre el fondo animado.
+  \item \textbf{Carrusel estilo ``Netflix'':} muestra pancartas con descripción y popup informativo, desplazándose en loop continuo mediante \texttt{requestAnimationFrame}.
+  \item \textbf{Fondo dinámico de puntos:} animación generada en \texttt{canvas} que reacciona al cursor, aportando profundidad sin afectar la interactividad.
+\end{itemize}
+
+\subsubsection{Explicación de la página}
+
+El encabezado (\texttt{header}) presenta el logo y los enlaces principales (\texttt{Inicio}, \texttt{Características}, \texttt{Producto}, \texttt{Contacto}), adaptándose automáticamente a diferentes tamaños de pantalla.
+
+El carrusel reproduce un efecto visual similar al de Netflix, desplazando las tarjetas de productos o características de forma fluida y sin saltos. Cada tarjeta incluye imagen, título y descripción, con posibilidad de ampliarse en un popup mediante la librería \texttt{SweetAlert2}.
+
+Por último, el fondo dinámico está programado con JavaScript y \texttt{canvas}, generando partículas luminosas que se mueven aleatoriamente, conectándose al acercarse al cursor, creando un ambiente moderno y tecnológico.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.85\textwidth]{Encabezado.jpg}
+  \caption{Encabezado principal del sitio web.}
+\end{figure}
+
+\subsubsection{Código}
+
+\paragraph{HTML (Encabezado)}
+\begin{verbatim}
+<header class="apple-style-navbar">
+  <nav class="navbar" role="navigation" aria-label="Menú principal">
+    <a href="index.html" class="navbar-logo" aria-label="Inicio V.I.A">
+      <img src="images/logo.png" alt="V.I.A Logo">
+    </a>
+    <ul class="navbar-links">
+      <li><a href="#inicio" class="navbar-item">Inicio</a></li>
+      <li><a href="#caracteristicas" class="navbar-item">Características</a></li>
+      <li><a href="#producto" class="navbar-item">Producto</a></li>
+      <li><a href="contacto.html" class="navbar-item">Contacto</a></li>
+    </ul>
+  </nav>
+</header>
+\end{verbatim}
+
+\paragraph{CSS (Navegación)}
+\begin{verbatim}
+.apple-style-navbar {
+  position: sticky;
+  top: 0;
+  background: rgba(24,24,24,0.6);
+  backdrop-filter: blur(6px);
+  border-bottom: 1px solid rgba(255,224,102,0.06);
+  z-index: 1000;
+  padding: 10px 20px;
+}
+.navbar { display:flex; align-items:center; justify-content:space-between; max-width:1200px; margin:0 auto; }
+.navbar-logo img { height: 40px; }
+.navbar-links { display:flex; gap:18px; list-style:none; margin:0; padding:0; }
+.navbar-item { color:#fff; text-decoration:none; font-weight:500; transition: color .18s; }
+.navbar-item:hover, .navbar-item:focus { color:#ffe066; outline: none; }
+\end{verbatim}
+
+\paragraph{JavaScript (Carrusel)}
+\begin{verbatim}
+// movimiento perpetuo con requestAnimationFrame
+const slidesContainer = document.querySelector('.glide__slides');
+let slides = Array.from(slidesContainer.querySelectorAll('.glide__slide.feature-item'));
+
+// duplicar slides para loop infinito
+slides.forEach(s => slidesContainer.appendChild(s.cloneNode(true)));
+
+let slideWidth = slides[0].offsetWidth + 32;
+let scrollPos = 0;
+const speed = 0.6;
+
+function step() {
+  scrollPos += speed;
+  if (scrollPos >= slideWidth * slides.length / 2) scrollPos -= slideWidth * slides.length / 2;
+  document.querySelector('#glideCarrusel .glide__track').scrollLeft = scrollPos;
+  requestAnimationFrame(step);
+}
+requestAnimationFrame(step);
+\end{verbatim}
+
+\paragraph{JavaScript (Fondo dinámico de puntos)}
+\begin{verbatim}
+const canvas = document.getElementById('futuristic-canvas');
+const ctx = canvas.getContext('2d');
+let W = innerWidth, H = innerHeight;
+canvas.width = W; canvas.height = H;
+
+const POINTS = 100;
+const points = [];
+function rand(min,max){ return Math.random()*(max-min)+min; }
+function createPoint(){
+  const a = rand(0,Math.PI*2), s = rand(0.4,1.6);
+  return { x: rand(0,W), y: rand(0,H), vx: Math.cos(a)*s, vy: Math.sin(a)*s, r: rand(2,6), a };
+}
+for(let i=0;i<POINTS;i++) points.push(createPoint());
+
+function drawPoints(){
+  ctx.clearRect(0,0,W,H);
+  for(let p of points){
+    p.x += p.vx; p.y += p.vy;
+    ctx.beginPath();
+    ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+    ctx.fillStyle = '#ffe066';
+    ctx.fill();
+  }
+  requestAnimationFrame(drawPoints);
+}
+requestAnimationFrame(drawPoints);
+\end{verbatim}
 
   \subsection{Página de asistencia}
     \subsubsection{Función}
@@ -647,5 +758,4 @@ HandsonTec. "HC-SR04 Ultrasonic Sensor — User Guide". Disponible en: \url{http
 Espressif Systems. "ESP32 Series — Technical Reference and Documentation". Sitio oficial con documentación de SDK y datasheets. Disponible en: \url{https://www.espressif.com/en/support/download/documents}.
 
 \end{thebibliography}
-
 \end{document}

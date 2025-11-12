@@ -589,5 +589,63 @@ La hoja técnica de la Raspberry Pi 5 se encuentra en el siguiente enlace:
     \end{verbatim}
 
 \section{Bibliografías}
+\begin{thebibliography}{99}
+
+\bibitem{esp32cam-datasheet}
+ESP32-CAM Development Board — DFRobot. "ESP32-CAM Development Board (DFR0602)". Ficha técnica y guía de uso. Disponible en: \url{https://media.digikey.com/pdf/Data%20Sheets/DFRobot%20PDFs/DFR0602_Web.pdf} (consultado 2025).
+
+\bibitem{ov2640}
+OmniVision Technologies. "OV2640 Color CMOS UXGA (2.0 MegaPixel) CameraChip — Preliminary Datasheet", Version 1.6, Febrero 2006. Disponible en: \url{https://www.uctronics.com/download/cam_module/OV2640DS.pdf}.
+
+\bibitem{hcsr04}
+SparkFun Electronics. "Ultrasonic Ranging Module HC-SR04 — Datasheet". Disponible en: \url{https://cdn.sparkfun.com/datasheets/Sensors/Proximity/HCSR04.pdf} (consultado 2025).
+
+\bibitem{raspberrypi5}
+Raspberry Pi Ltd. "Raspberry Pi 5 — Product Brief". Enero 2025. Disponible en: \url{https://datasheets.raspberrypi.com/rpi5/raspberry-pi-5-product-brief.pdf} y página del producto \url{https://www.raspberrypi.com/products/raspberry-pi-5/}.
+
+\bibitem{opencv}
+OpenCV Organization. "OpenCV — Open Computer Vision Library". Documentación y recursos. Disponible en: \url{https://docs.opencv.org/4.x/} y \url{https://opencv.org/}.
+
+\bibitem{mobilenets}
+Howard, A. et al. "MobileNets: Efficient Convolutional Neural Networks for Mobile Vision Applications". arXiv:1704.04861 (2017). Disponible en: \url{https://arxiv.org/abs/1704.04861}.
+
+\bibitem{mobilenetv2}
+Sandler, M.; Howard, A.; Zhu, M.; Zhmoginov, A.; Chen, L.-C. "MobileNetV2: Inverted Residuals and Linear Bottlenecks". arXiv:1801.04381 (2018). Disponible en: \url{https://arxiv.org/abs/1801.04381}.
+
+\bibitem{tiny-yolo}
+Khokhlov, I. et al. "Tiny-YOLO object detection supplemented with geometrical data". arXiv:2008.02170 (2020). Disponible en: \url{https://arxiv.org/abs/2008.02170}.
+
+\bibitem{tensorflowlite}
+TensorFlow. "TensorFlow Lite for Microcontrollers". Documentación oficial. Disponible en: \url{https://www.tensorflow.org/lite/microcontrollers} (consultado 2025).
+
+\bibitem{emailjs}
+EmailJS. "EmailJS — Send emails directly from JavaScript". Documentación y ejemplos (API public client init).
+Disponible en: \url{https://www.emailjs.com/docs/} (consultado 2025).
+
+\bibitem{speechsynthesis}
+Mozilla Developer Network (MDN). "Window.speechSynthesis — Web Speech API". Disponible en: \url{https://developer.mozilla.org/en-US/docs/Web/API/SpeechSynthesis} (consultado 2025).
+
+\bibitem{wcag}
+World Wide Web Consortium (W3C). "Web Content Accessibility Guidelines (WCAG) 2.1". Recomendaciones para accesibilidad web. Disponible en: \url{https://www.w3.org/TR/WCAG21/} (consultado 2025).
+
+\bibitem{legal-accessibility}
+"La transposición de la Directiva de accesibilidad en la UE y su impacto" — artículos y notas informativas sobre la entrada en vigor de normas de accesibilidad (ejemplo: cobertura de prensa y guías técnicas sobre la EAA y su relación con WCAG, 2025).
+
+\bibitem{github-repo}
+Repositorio del proyecto VIA (código fuente, documentación, issues): \url{https://github.com/impatrq/VIA} (consultado 2025).
+
+\bibitem{trello}
+Tablero de gestión del proyecto (Trello): \url{https://trello.com/b/mcL726dN/kanban} (consultado 2025).
+
+\bibitem{raspberrydocs}
+Raspberry Pi Documentation. "Raspberry Pi OS and general documentation". Disponible en: \url{https://www.raspberrypi.com/documentation/}.
+
+\bibitem{handsontec-hcsr04}
+HandsonTec. "HC-SR04 Ultrasonic Sensor — User Guide". Disponible en: \url{https://www.handsontec.com/dataspecs/HC-SR04-Ultrasonic.pdf}.
+
+\bibitem{esp32-official}
+Espressif Systems. "ESP32 Series — Technical Reference and Documentation". Sitio oficial con documentación de SDK y datasheets. Disponible en: \url{https://www.espressif.com/en/support/download/documents}.
+
+\end{thebibliography}
 
 \end{document}

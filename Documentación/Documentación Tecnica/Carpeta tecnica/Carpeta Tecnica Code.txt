@@ -3,16 +3,17 @@
 
 % Paquetes
 \usepackage{float}
-\usepackage[utf8]{inputenc}   % Codificación de caracteres
-\usepackage[T1]{fontenc}      % Codificación de fuente
-\usepackage[spanish]{babel}   % Idioma español
-\usepackage{graphicx}         % Para imágenes
-\usepackage{grffile}          % Para nombres de archivo con espacios
-\usepackage{geometry}         % Márgenes de página
-\usepackage{hyperref}         % Para enlaces clicables
-\usepackage{caption}          % Para personalizar captions
-\usepackage{enumitem}         % Para listas personalizadas
-\usepackage{tikz} % carga TikZ
+\usepackage[utf8]{inputenc}   
+\usepackage[T1]{fontenc}      
+\usepackage[spanish]{babel}  
+\usepackage{graphicx}        
+\usepackage{grffile}         
+\usepackage{geometry}        
+\usepackage{hyperref}        
+\usepackage{caption}          
+\usepackage{enumitem}         
+\usepackage{tikz} 
+\usepackage{ifthen}
 \usetikzlibrary{shapes.geometric, arrows.meta, positioning, calc}
 
 \tikzset{
@@ -21,20 +22,21 @@
   io/.style = {ellipse, draw, minimum width=2.6cm, minimum height=0.9cm, align=center, font=\footnotesize},
   arr/.style = {-{Latex[length=3mm]}, thick}
 }
-\geometry{margin=2.5cm}       % Márgenes de 2.5cm
+\geometry{margin=2.5cm} 
 
 % Comando para ficha de integrante
-\newcommand{\integrante}[5]{%
+\newcommand{\integrante}[6]{
 \noindent
 \begin{minipage}[t]{0.28\textwidth}
   \includegraphics[width=\linewidth]{#1}
 \end{minipage}\hfill
 \begin{minipage}[c]{0.68\textwidth} % centrado vertical
-  \vspace{0pt}%
+  \vspace{0pt}
   \textbf{#2}\\[3pt]
   \textbf{DNI:} #3\\[3pt]
   \textbf{Mail:} \href{mailto:#4}{#4}\\[6pt]
-  #5
+  #5\\[6pt]
+  \textbf{LinkedIn:} \href{#6}{LinkIn}
 \end{minipage}%
 \vspace{1.5cm} % espacio entre integrantes
 }
@@ -51,7 +53,7 @@
 
 \begin{document}
 
-% Portada personalizada
+% Portada
 \begin{titlepage}
     \centering
     \vspace*{1.5cm}
@@ -75,17 +77,25 @@
 \tableofcontents
 \clearpage
 
-% Contenido principal
 \section{Preámbulo}
 
 \subsection{¿Quiénes somos?}
 
-% Integrantes del Proyecto VIA
-\integrante{Grannyto.png}{GRANATA PARDO, Joaquín}{47806213}{granatajoaquin@gmail.com}{Desarrollo de página y documentación y ayudo a mis compañeros.}
-\integrante{Gordongo.png}{CARAM SODANO, Matías Leonel}{47686323}{matias.rapero2007@gmail.com}{Desarrollo de página web y ayudo a mis compañeros.}
-\integrante{Autista.png}{PAZ, Bautista Gabriel}{47833537}{bautistapaz504@gmail.com}{Programación de componentes y ayudo a mis compañeros.}
-\integrante{Milonja.png}{RADAKOFF, Milovan}{48157678}{miloradqw@gmail.com}{Armado del servidor y ayudo a mis compañeros.}
-\integrante{sele.png}{RAMIREZ NAHIR, Selene}{47144100}{seleneramirez@gmail.com}{Diseño e impresión de lentes y ayudo a mis compañeros.}
+\integrante{Grannyto.png}{GRANATA PARDO, Joaquín}{47806213}{granatajoaquin@gmail.com}{Desarrollo de página y documentación.
+
+Ayudo a mis compañeros.}{https://www.linkedin.com/in/joaquin-granata-pardo-9b3b32398/}
+\integrante{Gordongo.png}{CARAM SODANO, Matías Leonel}{47686323}{matias.rapero2007@gmail.com}{Desarrollo de página web.
+
+Ayudo a mis compañeros.}{http://www.linkedin.com/in/matias-caram-b96009399}
+\integrante{Autista.png}{PAZ, Bautista Gabriel}{47833537}{bautistapaz504@gmail.com}{Programación de componentes.
+
+Ayudo a mis compañeros.}{https://ar.linkedin.com/in/bautista-paz-6a4363380}
+\integrante{Milonja.png}{RADAKOFF, Milovan}{48157678}{miloradqw@gmail.com}{Armado del servidor. 
+
+Ayudo a mis compañeros.}{https://www.linkedin.com/in/milo-rada-53aa11398/}
+\integrante{sele.png}{RAMIREZ NAHIR, Selene}{47144100}{seleneramirez@gmail.com}{Diseño e impresión de lentes. 
+
+Ayudo a mis compañeros.}{https://www.linkedin.com/feed/?trk=onboarding-landing}
 
 \begin{figure}[H]
     \centering
@@ -99,7 +109,7 @@
     \item Mail del proyecto: \href{mailto:visioninteligenteasistida@gmail.com}{visioninteligenteasistida@gmail.com}
     \item Página Web: Todavia no se esta hosteando un servidor, por lo que la pagina todavia no se halla operativa fuera de la computadora local
     \item Cuenta de Instagram:
-     \url{https://www.instagram.com/vision_inteligente_asistida/}
+     \href{https://www.instagram.com/vision_inteligente_asistida/}{VIA-Instagram}
 \end{itemize}
 
 \subsection{Docentes a cargo}
@@ -332,7 +342,7 @@ Su sistema operativo, basado en Linux, permite ejecutar scripts en Python que ma
 \begin{itemize}
   \item Procesar las imágenes enviadas por la ESP32-CAM y aplicar modelos de inteligencia artificial para identificar objetos o señales relevantes.
   \item Controlar la emisión de alertas auditivas según los resultados de detección y la distancia medida por el sensor ultrasónico.
-  \item Hospedar el servidor local accesible desde el navegador (\texttt{http://192.168.4.1:8080}) para monitorear el sistema.
+  \item Hospedar el servidor local accesible desde el navegador para monitorear el sistema.
   \item Gestionar la conexión con auriculares Bluetooth y la comunicación con el módulo web para compartir ubicación o recibir asistencia remota.
 \end{itemize}
 
@@ -343,20 +353,9 @@ La hoja técnica de la Raspberry Pi 5 se encuentra en el siguiente enlace:
 \section{Páginas de Web}
 \subsection{Página web del proyecto}
 
-\subsubsection{Función}
-
-La página web del proyecto cumple funciones de presentación, interacción y estética dinámica. 
-Se divide en tres partes principales:
-
-\begin{itemize}
-  \item \textbf{Navegación y encabezado:} barra superior fija con el logo y enlaces principales; garantiza accesibilidad, responsividad y visibilidad sobre el fondo animado.
-  \item \textbf{Carrusel estilo ``Netflix'':} muestra pancartas con descripción y popup informativo, desplazándose en loop continuo mediante \texttt{requestAnimationFrame}.
-  \item \textbf{Fondo dinámico de puntos:} animación generada en \texttt{canvas} que reacciona al cursor, aportando profundidad sin afectar la interactividad.
-\end{itemize}
-
 \subsubsection{Explicación de la página}
 
-El encabezado (\texttt{header}) presenta el logo y los enlaces principales (\texttt{Inicio}, \texttt{Características}, \texttt{Producto}, \texttt{Contacto}), adaptándose automáticamente a diferentes tamaños de pantalla.
+El encabezado (header) presenta el logo y los enlaces principales (Inicio, Caracteristicas, etc), adaptándose automáticamente a diferentes tamaños de pantalla.
 
 El carrusel reproduce un efecto visual similar al de Netflix, desplazando las tarjetas de productos o características de forma fluida y sin saltos. Cada tarjeta incluye imagen, título y descripción, con posibilidad de ampliarse en un popup mediante la librería \texttt{SweetAlert2}.
 

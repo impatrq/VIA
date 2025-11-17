@@ -1,19 +1,744 @@
-body {
-    font-family: Arial, sans-serif;
+/* Reset y fuentes */
+html, body {
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
-    color: #333;
+    font-family: 'Roboto', sans-serif;
+    background: #181818;
+    color: #fff;
+    height: 100%;
+    ::-webkit-scrollbar {
+        width: 0;
+    }
+}
+#interactive-bg {
+    position: fixed;
+    top: 0; left: 0; width: 100vw; height: 100vh;
+    z-index: 0;
+    pointer-events: none;
+}
+body > *:not(#interactive-bg) {
+    position: relative;
+    z-index: 1;
 }
 
-header, footer {
-    background-color: #222;
-    color: white;
+/* Navbar */
+.apple-style-navbar {
+    background: none;
+    border-bottom: 1px solid #e0e0e0;
+    padding: 10px 20px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+.navbar-logo img { height: 40px; }
+.navbar-links {
+    display: flex;
+    list-style: none;
+    padding: 0; margin: 0;
+}
+.navbar-item {
+    text-decoration: none;
+    color: #fff;
+    font-size: 16px;
+    margin: 0 15px;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+.navbar-item:hover { color: #dbdf00; }
+
+/* Encabezado */
+.header {
+    background: none;
+    color: #fff;
+    padding: 60px 20px;
     text-align: center;
-    padding: 1rem 0;
+}
+.header-content h1 { font-size: 2.2rem; margin: 0 0 20px 0; }
+.header-content p { font-size: 20px; margin-bottom: 30px; }
+.via-animada {
+    font-size: 7vw;
+    font-weight: 900;
+    letter-spacing: 0.2em;
+    color: #dbdf00;
+    text-shadow: 0 6px 32px #2E7D32, 0 2px 0 #fff;
+    margin: 80px 0 10px 0;
+    line-height: 1;
+    user-select: none;
+    text-align: center;
+}
+@media (max-width: 600px) {
+    .via-animada { font-size: 14vw; margin-top: 40px; }
 }
 
-main {
-    padding: 2rem;
+/* Características y carrusel */
+.features {
+    padding: 20px 0 0 0;
+    background: none;
     text-align: center;
 }
+.features h2 { font-size: 32px; margin-bottom: 20px; }
+.features .container {
+    margin-bottom: 80px;
+    overflow-x: auto;
+    padding: 0; /* Quita el padding lateral */
+    box-sizing: border-box;
+}
+.glide {
+    max-width: 100vw; /* Permite que el carrusel use todo el ancho disponible */
+    margin: 0 auto 60px auto;
+    padding: 40px 0;
+    overflow: visible;
+}
+.glide__track {
+    overflow-x: visible; /* Permite que las pancartas sobresalgan si es necesario */
+    overflow-y: visible;
+}
+
+.glide__slides {
+    display: flex;
+    gap: 32px;
+    padding:50px 0 50px 0 !important;
+    margin: 50px 0 50px 0 !important;
+    overflow: visible;
+    box-sizing: border-box;
+}
+.glide__slide.feature-item {
+    bottom : 50%;
+    background: rgba(30,30,30,0.7);
+    border: 1.5px solid #dbdf00;
+    border-radius: 18px;
+    padding: 38px 28px 32px 28px;
+    min-width: 320px;
+    max-width: 370px;
+    min-height: 320px;
+    text-align: center;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.13);
+    font-size: 1.18rem;
+    cursor: pointer;
+    color: #fff;
+    backdrop-filter: blur(4px);
+    transition: transform 0.3s;
+}
+.glide__slide.feature-item:hover {
+    transform: scale(1.04);
+    border-color: #ffee00;
+}
+.glide__slide.feature-item img { width: 100px; margin-bottom: 18px; }
+.glide__slide.feature-item h3 { font-size: 1.6rem; margin-bottom: 14px; }
+.glide__slide.feature-item p { font-size: 1.13rem; color: #ccc; }
+/* ===================== RESPONSIVE DESIGN ===================== */
+@media (max-width: 1200px) {
+    .navbar {
+        max-width: 98vw;
+        padding: 0 10px;
+    }
+    .model-3d-container {
+        width: 98vw;
+        min-width: 0;
+        max-width: 100vw;
+    }
+}
+
+@media (max-width: 900px) {
+    .header-content h1 { font-size: 1.4rem; }
+    .header-content p { font-size: 1rem; }
+    .features h2 { font-size: 1.2rem; }
+    .model-3d-container model-viewer {
+        width: 98vw !important;
+        height: 220px !important;
+        min-width: 0;
+        margin: 0 1vw;
+    }
+    .arrow-btn.left, .arrow-btn.right {
+        width: 36px;
+        height: 36px;
+        font-size: 1.2rem;
+        left: -12px;
+        right: -12px;
+    }
+    .model-features li {
+        font-size: 1rem;
+    }
+    .glide__slide.feature-item {
+        min-width: 220px;
+        max-width: 92vw;
+        padding: 18px 4vw 18px 4vw;
+        font-size: 0.98rem;
+    }
+    .glide__slides {
+        gap: 14px;
+        padding: 30px 0 30px 0 !important;
+        margin: 30px 0 30px 0 !important;
+    }
+    .container {
+        max-width: 98vw;
+        padding: 0 2vw;
+    }
+}
+@media (max-width: 700px) {
+    .navbar {
+        flex-direction: column;
+        gap: 8px;
+        padding: 0 4vw;
+    }
+    .navbar-links {
+        flex-direction: column;
+        gap: 6px;
+    }
+    .navbar-item {
+        margin: 6px 0;
+        font-size: 1rem;
+    }
+    .header-content {
+        padding: 0 4vw;
+    }
+    .features .container {
+        padding: 0;
+    }
+    .glide__slide.feature-item {
+        min-width: 140px;
+        max-width: 98vw;
+        padding: 10px 2vw 10px 2vw;
+        font-size: 0.85rem;
+    }
+    .glide__slides {
+        gap: 8px;
+        padding: 18px 0 18px 0 !important;
+        margin: 18px 0 18px 0 !important;
+    }
+    .model-3d-container model-viewer {
+        width: 98vw !important;
+        height: 120px !important;
+    }
+    .footer {
+        font-size: 0.9rem;
+        padding: 10px 0;
+    }
+    .via-animada { font-size: 14vw; margin-top: 40px; }
+    .features h2 { font-size: 1.1rem; }
+    .scroll-top-btn {
+        right: 10px;
+        bottom: 10px;
+        width: 44px;
+        height: 44px;
+        font-size: 1.5rem;
+    }
+    .container {
+        max-width: 100vw;
+        padding: 0 2vw;
+    }
+}
+@media (max-width: 500px) {
+    .header-content h1 { font-size: 1.1rem; }
+    .via-animada { font-size: 11vw; }
+    .features h2 { font-size: 1.1rem; }
+    .glide__slide.feature-item {
+        min-width: 110px;
+        max-width: 99vw;
+        padding: 6px 1vw 6px 1vw;
+        font-size: 0.78rem;
+    }
+    .glide__slides {
+        gap: 4px;
+        padding: 8px 0 8px 0 !important;
+        margin: 8px 0 8px 0 !important;
+    }
+    .model-3d-container model-viewer {
+        width: 99vw !important;
+        height: 80px !important;
+    }
+    .footer {
+        font-size: 0.85rem;
+        padding: 7px 0;
+    }
+    .container {
+        max-width: 100vw;
+        padding: 0 1vw;
+    }
+}
+
+/* ===================== RESPONSIVE ENHANCEMENTS (mobile / tablet only) ===================== */
+/* No modifican estilos de escritorio actuales; solo aplican bajo determinados breakpoints */
+
+/* Asegura que medios y modelos no se desborden en móvil */
+@media (max-width: 1200px) {
+    img, iframe, model-viewer {
+        max-width: 100%;
+        height: auto;
+    }
+}
+
+/* Glide: permitir scroll táctil suave en pantallas pequeñas */
+@media (max-width: 900px) {
+    .glide__track {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scroll-behavior: smooth;
+        padding-bottom: 6px;
+    }
+    .glide__slides {
+        gap: 14px;
+        padding: 24px 6px !important;
+        margin: 24px 0 !important;
+    }
+}
+
+/* Navbar y layout: columnas y reducción de espacios en móviles */
+@media (max-width: 700px) {
+    .navbar {
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 4vw;
+    }
+    .navbar-links {
+        flex-direction: column;
+        gap: 6px;
+        width: 100%;
+        align-items: center;
+    }
+    .navbar-item {
+        display: block;
+        width: 100%;
+        padding: 8px 0;
+        text-align: center;
+        margin: 0;
+    }
+
+    .header {
+        padding: 36px 12px;
+    }
+    .header-content h1 { font-size: 1.05rem; }
+    .header-content p { font-size: 0.95rem; }
+
+    /* Video containers: reducir padding y tamaño de textos */
+    .video-info { padding: 16px 12px; }
+    .video-info h3 { font-size: 1.15rem; }
+    .video-info p { font-size: 0.95rem; line-height: 1.45; }
+
+    /* Modelo 3D ocupa el ancho disponible */
+    .model-3d-container model-viewer {
+        width: 96vw !important;
+        height: auto !important;
+        max-height: 360px;
+    }
+}
+
+/* Short vertical: tamaños específicos para móviles (más cortos/compactos) */
+@media (max-width: 700px) {
+    .video-wrapper.vertical {
+        max-width: 140px;    /* compacto en móviles */
+        padding-bottom: 150%; /* relación reducida para ser menos alto */
+    }
+}
+@media (max-width: 420px) {
+    .video-wrapper.vertical {
+        max-width: 110px;
+        padding-bottom: 150%;
+    }
+}
+@media (max-width: 360px) {
+    .video-wrapper.vertical {
+        max-width: 96px;
+        padding-bottom: 160%;
+    }
+}
+
+/* Ajustes finos para muy pequeñas pantallas: evitar overflow y recortar espacios */
+@media (max-width: 360px) {
+    .container { padding: 0 8px; }
+    .video-info { padding: 12px 8px; }
+    .header { padding: 28px 8px; }
+    .via-animada { margin: 28px 0 6px; }
+}
+
+/* Mejora de accesibilidad táctil: zonas activas mayores y touch-action */
+@media (max-width: 900px) {
+    .feature-btn, .banner-btn, .navbar-item, .show-markers-btn {
+        touch-action: manipulation;
+    }
+    .glide__slide.feature-item { -webkit-tap-highlight-color: transparent; }
+}
+
+/* Mantener scroll-top bien posicionado en móvil (no afecta escritorio) */
+@media (max-width: 600px) {
+    .scroll-top-btn {
+        right: 10px;
+        bottom: 12px;
+    }
+}
+
+/* Tiny polish: evita que iframe vertical quede centrado fuera del contenedor */
+.video-wrapper.vertical iframe {
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: 100%;
+}
+
+/* Fin de ajustes responsive */
+
+/* Modelo 3D */
+.model-3d-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 18px;
+    flex-wrap: wrap;
+    overflow: visible;
+    /* no tocar dimensiones de escritorio aquí */
+}
+.model-3d-container model-viewer {
+    display: block !important;
+    visibility: visible !important;
+    position: relative !important;
+    z-index: 2 !important; /* encima del canvas (canvas z-index:0) */
+    width: 600px !important; /* mantiene tamaño de escritorio */
+    height: 420px !important;
+    max-width: 100%;
+    box-sizing: border-box;
+    background: #222;
+    border-radius: 24px;
+}
+
+/* Mobile / tablet: adaptar tamaño sin cambiar diseño de escritorio */
+@media (max-width: 900px) {
+    .model-3d-container model-viewer {
+        width: min(92vw, 640px) !important;
+        height: auto !important;
+        max-height: 420px !important;
+    }
+}
+
+@media (max-width: 420px) {
+    .model-3d-container model-viewer {
+        width: 96vw !important;
+        height: auto !important;
+        max-height: 320px !important;
+    }
+}
+
+/* Si hubiera reglas que oculten por accidente, forzamos visibilidad en breakpoints */
+@media (max-width: 900px) {
+    .model-3d-container, .model-3d-container * {
+        display: revert !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+    }
+}
+
+/* SECCIÓN DE VIDEOS */
+.videos-section {
+    padding: 60px 20px;
+    background: none;
+    text-align: center;
+}
+.videos-section h2 {
+    font-size: 32px;
+    margin-bottom: 20px;
+    color: #fff;
+}
+.videos-section .txt-p {
+    font-size: 1.1rem;
+    color: #ccc;
+    margin-bottom: 50px;
+}
+.video-container {
+    max-width: 900px;
+    margin: 0 auto 60px auto;
+    background: rgba(30,30,30,0.7);
+    border: 1.5px solid #dbdf00;
+    border-radius: 18px;
+    overflow: hidden;
+    backdrop-filter: blur(4px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.13);
+    transition: transform 0.3s, border-color 0.3s;
+}
+.video-container:hover {
+    transform: scale(1.02);
+    border-color: #ffee00;
+}
+.video-wrapper {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%; /* Ratio 16:9 */
+    height: 0;
+    overflow: hidden;
+    background: #222;
+}
+.video-placeholder {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
+}
+.video-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+.video-info {
+    padding: 30px 24px;
+}
+.video-info h3 {
+    font-size: 1.6rem;
+    color: #dbdf00;
+    margin: 0 0 14px 0;
+}
+.video-info p {
+    font-size: 1.13rem;
+    color: #ccc;
+    margin: 0;
+    line-height: 1.6;
+}
+
+@media (max-width: 900px) {
+    .videos-section h2 { font-size: 1.4rem; }
+    .videos-section .txt-p { font-size: 1rem; }
+    .video-container { margin-bottom: 40px; }
+    .video-info { padding: 20px 16px; }
+    .video-info h3 { font-size: 1.3rem; }
+    .video-info p { font-size: 1rem; }
+}
+
+@media (max-width: 700px) {
+    .videos-section h2 { font-size: 1.1rem; }
+    .videos-section .txt-p { font-size: 0.95rem; margin-bottom: 30px; }
+    .videos-section { padding: 40px 10px; }
+    .video-container { margin-bottom: 30px; border-radius: 14px; }
+    .video-info { padding: 16px 12px; }
+    .video-info h3 { font-size: 1.1rem; margin-bottom: 10px; }
+    .video-info p { font-size: 0.95rem; }
+}
+
+@media (max-width: 500px) {
+    .videos-section { padding: 30px 0; }
+    .videos-section h2 { font-size: 1rem; }
+    .videos-section .txt-p { font-size: 0.9rem; }
+    .video-container { margin-bottom: 20px; margin-left: 0; margin-right: 0; }
+    .video-info { padding: 12px 8px; }
+    .video-info h3 { font-size: 1rem; }
+    .video-info p { font-size: 0.85rem; }
+}
+
+/* Fix responsive: short vertical (Producto) y asegurar visibilidad del model-viewer en móvil
+   No cambia la apariencia en escritorio; sólo aplica bajo breakpoints. */
+
+/* Ensure vertical short has a defined, compact aspect on small screens */
+@media (max-width: 900px) {
+    .video-wrapper.vertical {
+        /* menor altura relativa y tamaño máximo para que no ocupe toda la pantalla */
+        padding-bottom: 140%;     /* menos alto que el 16:9 vertical anterior */
+        max-width: 220px;         /* tamaño cómodo en tablet/phone landscape */
+        margin: 0 auto;
+        height: 0;
+        overflow: hidden;
+    }
+    .video-wrapper.vertical iframe {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100%;
+        height: 100%;
+    }
+
+    /* Ensure model-viewer shows up on smaller screens and is contained */
+    .model-3d-container model-viewer {
+        display: block !important;
+        width: 90vw !important;
+        max-width: 640px !important;
+        height: auto !important;
+        max-height: 360px !important;
+        margin: 0 1vw !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+    }
+}
+
+/* Further reduce short size on phones */
+@media (max-width: 420px) {
+    .video-wrapper.vertical {
+        padding-bottom: 130%;
+        max-width: 160px;
+    }
+    .model-3d-container model-viewer {
+        max-height: 260px !important;
+    }
+}
+
+/* Very small phones */
+@media (max-width: 360px) {
+    .video-wrapper.vertical {
+        padding-bottom: 120%;
+        max-width: 120px;
+    }
+    .model-3d-container model-viewer {
+        max-height: 200px !important;
+    }
+}
+
+/* Small polish: avoid unexpected overflow on mobile */
+@media (max-width: 900px) {
+    .container { padding-left: 12px; padding-right: 12px; }
+    .video-container { padding: 0; }
+}
+
+/* Footer SIEMPRE al final del contenido */
+html, body {
+    height: 100%;
+}
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+.footer {
+    background: none;
+    color: #ffee00;
+    text-align: center;
+    padding: 20px 0;
+    margin-top: auto;
+    width: 100%;
+    position: static;
+    bottom: 0;
+}
+
+/* Botón scroll arriba */
+.scroll-top-btn {
+    position: fixed;
+    right: -1240px;
+    bottom: 65px;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: #dbdf00;
+    color: #222;
+    border: none;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+    font-size: 2.2rem;
+    cursor: pointer;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s, background 0.2s, right 0.2s, bottom 0.2s;
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.scroll-top-btn:hover {
+    background: #ffee00;
+    color: #2E7D32;
+}
+@media (max-width: 600px) {
+    .scroll-top-btn {
+        right: 10px;
+        bottom: 10px;
+        width: 44px;
+        height: 44px;
+        font-size: 1.5rem;
+    }
+}
+
+/* Personalización del popup SweetAlert2 */
+.swal2-popup {
+    border-radius: 18px !important;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.25) !important;
+    border: 2px solid #ffe066 !important;
+    background: #222 !important;
+    color: #ffe066 !important;
+}
+.swal2-title {
+    color: #ffe066 !important;
+    font-size: 1.7rem !important;
+    margin-bottom: 0.7em !important;
+}
+.swal2-confirm {
+    background: linear-gradient(90deg,#ff4081,#ffe066) !important;
+    color: #222 !important;
+    border-radius: 30px !important;
+    font-weight: bold !important;
+    font-size: 1.1rem !important;
+    padding: 0.7em 2.2em !important;
+    box-shadow: 0 2px 8px rgba(255,224,102,0.18) !important;
+}
+.swal2-html-container p {
+    color: #ffe066 !important;
+    margin: 0 !important;
+}
+.swal2-popup img {
+    border-radius: 12px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 12px #ffe06644;
+}
+
+/* Elimina las flechas */
+.arrow-btn, .arrow-btn.left, .arrow-btn.right {
+    display: none !important;
+}
+
+/* Marcadores sobre el modelo 3D */
+.model-3d-container {
+    position: relative;
+}
+
+.model-marker {
+    position: absolute;
+    background: #ffee00;
+    color: #222;
+    padding: 6px 14px;
+    border-radius: 16px;
+    font-size: 1rem;
+    font-weight: bold;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.18);
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    opacity: 0.93;
+    border: 2px solid #222;
+    user-select: none;
+    white-space: nowrap;
+}
+
+.model-marker {
+    display: none; /* Ocultos por defecto */
+}
+
+.model-3d-container.show-markers .model-marker {
+    display: block;
+}
+
+.show-markers-btn {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    z-index: 20;
+    background: #222;
+    color: #ffee00;
+    border: 2px solid #ffee00;
+    border-radius: 18px;
+    padding: 8px 18px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+}
+.show-markers-btn:hover {
+    background: #ffee00;
+    color: #222;
+}
+
+

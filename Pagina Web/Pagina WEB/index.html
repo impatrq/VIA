@@ -5,22 +5,127 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>V.I.A - Anteojos Inteligentes</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@glidejs/glide/dist/css/glide.core.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script>
 </head>
 <body>
-    <header>
-        <h1>V.I.A - Anteojos Inteligentes</h1>
+    <!-- Fondo dinámico de puntos -->
+    <canvas id="futuristic-canvas"></canvas>
+
+    <!-- Barra de navegación -->
+    <header class="apple-style-navbar">
+        <nav class="navbar">
+            <a href="#" class="navbar-logo">
+                <img src="images/logo.png" alt="V.I.A Logo">
+            </a>
+            <ul class="navbar-links">
+                <li><a href="#inicio" class="navbar-item">Inicio</a></li>
+                <li><a href="#caracteristicas" class="navbar-item">Características</a></li>
+                <li><a href="Producto.html" class="navbar-item">Producto</a></li>
+                <li><a href="contacto.html" class="navbar-item">Contacto</a></li>
+            </ul>
+        </nav>
     </header>
 
-    <main>
-        <section id="inicio">
-            <p>Bienvenido al proyecto V.I.A. Aquí comenzará el desarrollo de nuestra página.</p>
-        </section>
-    </main>
+    <!-- Encabezado principal -->
+    <header class="header">
+        <div class="header-content container">
+            <div class="via-animada">V.I.A</div>
+            <h1>Lentes Inteligentes</h1>
+            <p>
+                Los lentes que ayudan a mejorar el manejo por zonas urbanas de las personas con discapacidad visual, ayudándolos a orientarse mediante cámaras, sensores 
+                y nuestra IA de navegacion.
+            </p>
+        </div>
+    </header>
+    
+    <!-- Sección de características en carrusel horizontal -->
+    <section id="caracteristicas" class="features">
+        <div class="container">
+            <h2>Características Principales</h2>
+            <p class="txt-p">
+                V.I.A combina tecnología avanzada con un diseño intuitivo para ofrecer una experiencia única.
+            </p>
+            <div class="glide" id="glideCarrusel">
+                <div class="glide__track" data-glide-el="track">
+                    <ul class="glide__slides">
+                        <li class="glide__slide feature-item" data-title="Cámara Inteligente" data-desc="Detecta obstáculos y proporciona orientación en tiempo real.">
+                            <img src="images/ESP-CAM.jpg" alt="Cámara Inteligente">
+                            <h3>Cámara Inteligente</h3>
+                            <p>Detecta obstáculos y proporciona orientación en tiempo real.</p>
+                            <button class="feature-btn">Ver más</button>
+                        
+                        <li class="glide__slide feature-item" data-title="Sensor Ultrasonico" data-desc="Instrucciones claras para una navegación segura.">
+                            <img src="images/SENSOR.jpeg" alt="Sensor Ultrasonico">
+                            <h3>Sensor Ultrasonico</h3>
+                            <p>Detecta la distancia con posibles obstáculos </p>
+                            <button class="feature-btn">Ver más</button>
+                        </li>
+                        </li>
+                         <li class="glide__slide feature-item" data-title="Lentes 3D" data-desc="Detecta obstáculos y proporciona orientación en tiempo real.">
+                            <img src="images/Lentes.jpg" alt="Lentes 3D">
+                            <h3>Lentes 3D</h3>
+                            <p>Lentes diseñados en 3D para la comodidad 
+                                y adaptabilidad del usiario</p>
+                            <button class="feature-btn">Ver más</button>
+                        </li>
+                         <li class="glide__slide feature-item" data-title="Raspberry Pi 5" data-desc="Computadora compacta diseñada para brindar alto rendimiento, conectividad ampliada y soporte para múltiples aplicaciones.">
+                            <img src="images/Procesador.webp" alt="Raspberry Pi 5">
+                            <h3>Raspberry Pi 5</h3>
+                            <p>Computadora compacta diseñada para brindar alto rendimiento,
+conectividad ampliada y soporte para múltiples aplicaciones.</p>
+                            <button class="feature-btn">Ver más</button>
+                        </li>
+                        <li class="glide__slide feature-item" data-title="Auriculares Oseos"Ligero y cómodo para un uso prolongado.">
+                            <img src="images/Auriculares.webp" alt="Auriculares Oseos">
+                            <h3>Auriculares Oseos</h3>
+                            <p>Auriculares de diseño comodo y compacto, que van por fuera del oido 
+                            para no bloquear los sonidos ambientales.
+                            </p>
+                            <button class="feature-btn">Ver más</button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <footer>
-        <p>&copy; 2025 V.I.A - Todos los derechos reservados.</p>
+    <!-- Modelo 3D al final de la página -->
+    <section style="width:100%;display:flex;justify-content:center;align-items:center;margin:60px 0 60px 0;">
+        <div class="model-3d-container">
+            <model-viewer 
+                src="3D/base.blend.obj.glb" 
+                alt="Modelo 3D de anteojos V.I.A"
+                camera-controls 
+                auto-rotate 
+                style="width: 600px; height: 420px; background: #222; border-radius: 24px;">
+            </model-viewer>
+            <div class="model-features">
+                <ul>
+                    <li>Rotación interactiva 360°</li>
+                    <li>Zoom y control de cámara</li>
+                    <li>Visualización detallada del producto</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pie de página al fondo del contenido -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 V.I.A - Todos los derechos reservados.</p>
+        </div>
     </footer>
 
+    <!-- Botón para subir al inicio -->
+    <button id="scrollTopBtn" class="scroll-top-btn" aria-label="Subir al inicio">&#8679;</button>
+
+        <!-- Glide.js JS -->
+    <script src="https://cdn.jsdelivr.net/npm/@glidejs/glide/dist/glide.min.js"></script>
+    <!-- Tu JS principal -->
     <script src="main.js"></script>
 </body>
 </html>

@@ -78,3 +78,17 @@ COCO_INSTANCE_CATEGORY_NAMES = [
     'microwave', 'oven', 'toaster', 'sink', 'refrigerator', 'N/A', 'book', 'clock',
     'vase', 'scissors', 'teddy bear', 'hair drier', 'toothbrush'
 ]
+# Parámetros para filtrado
+min_confidence_threshold = 0.25 # Similar al conf=0.25 en YOLO
+
+# Extraer resultados
+detection_boxes = result['detection_boxes'][0].numpy() # [ymin, xmin, ymax, xmax]
+detection_scores = result['detection_scores'][0].numpy()
+detection_classes = result['detection_classes'][0].numpy().astype(int)
+
+# Crear una copia de la imagen PIL para dibujar
+draw_image = original_image_pil.copy()
+draw = ImageDraw.Draw(draw_image)
+width, height = original_image_pil.size
+
+print("\nAnálisis de las detecciones:\n")

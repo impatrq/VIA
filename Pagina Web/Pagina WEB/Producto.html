@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Producto V.I.A - Anteojos Inteligentes</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+    <!-- Fondo dinámico -->
+    <canvas id="futuristic-canvas"></canvas>
+
+    <!-- Barra de navegación -->
+    <header class="apple-style-navbar">
+        <nav class="navbar">
+            <a href="index.html" class="navbar-logo">
+                <img src="images/logo.png" alt="V.I.A Logo">
+            </a>
+            <ul class="navbar-links">
+                <li><a href="index.html#inicio" class="navbar-item">Inicio</a></li>
+                <li><a href="index.html#caracteristicas" class="navbar-item">Características</a></li>
+                <li><a href="Producto.html" class="navbar-item">Producto</a></li>
+                <li><a href="contacto.html" class="navbar-item">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Encabezado principal -->
+    <header class="header">
+        <div class="header-content container">
+            <div class="via-animada">V.I.A</div>
+        </div>
+    </header>
+
+    <!-- SECCIÓN DE VIDEOS -->
+    <section id="videos" class="videos-section">
+        <div class="container">
+            <h2>Explicacion de nuestro proyecto</h2>
+            <p class="txt-p">Descubre cómo funcionan nuestros lentes para ayudar a las personas no videntes.</p>
+            
+            <!-- Video 1 (Short vertical) -->
+            <div class="video-container">
+                <div class="video-wrapper vertical">
+                    <!-- ID del Short: MG6BR0iAhEU -->
+                    <iframe src="https://www.youtube.com/embed/MG6BR0iAhEU?playsinline=1"
+                        title="V.I.A - Demostración" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+                <div class="video-info">
+                    <h3>Video de Explicación (Short)</h3>
+                    <p>Una explicación breve del proyecto por el equipo de V.I.A.</p>
+                </div>
+            </div>
+
+            <!-- Video 2 (espacio reservado) -->
+            <div class="video-container">
+                <div class="video-wrapper">
+                    <div class="video-placeholder">
+                        <p style="color: #ccc; font-size: 1.2rem;">Próximamente</p>
+                    </div>
+                </div>
+                <div class="video-info">
+                    <h3>Próximamente</h3>
+                    <p>Nuevo contenido sobre V.I.A. Actualización disponible pronto.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pie de página al fondo del contenido -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 V.I.A - Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Botón para subir al inicio -->
+    <button id="scrollTopBtn" class="scroll-top-btn" aria-label="Subir al inicio">&#8679;</button>
+
+    <!-- Glide.js JS -->
+    <script src="https://cdn.jsdelivr.net/npm/@glidejs/glide/dist/glide.min.js"></script>
+    <!-- Tu JS principal -->
+    <script src="main.js"></script>
+</body>
+</html>

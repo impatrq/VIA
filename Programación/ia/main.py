@@ -92,3 +92,32 @@ draw = ImageDraw.Draw(draw_image)
 width, height = original_image_pil.size
 
 print("\nAnálisis de las detecciones:\n")
+
+
+detected_objects_count = 0
+for i in range(len(detection_scores)):
+    if detection_scores[i] >= min_confidence_threshold:
+        detected_objects_count += 1
+        ymin, xmin, ymax, xmax = detection_boxes[i]
+
+        # Convertir coordenadas normalizadas a píxeles
+        x1 = int(xmin * width)
+        y1 = int(ymin * height)
+        x2 = int(xmax * width)
+        y2 = int(ymax * height)
+
+        class_id = detection_classes[i]
+        label = COCO_INSTANCE_CATEGORY_NAMES[class_id] if class_id < len(COCO_INSTANCE_CATEGORY_NAMES) else f"Unknown Class ({class_id})"
+        confidence = detection_scores[i]
+
+        # Dibujar el recuadro y la etiqueta
+        draw.rectangle([(x1, y1), (x2, y2)], outline="red", width=3)
+
+        try:
+            font = ImageFont.truetype("arial.ttf", 20)
+        except IOError:
+            font = ImageFont.load_default()
+
+        draw.text((x1 + 5, y1 + 5), f"{label}: {confidence:.2f}", fill="red", font=font)
+
+        print(f"  - Objeto: {label} (Confianza: {confidence:.2f}) en [x1:{x1}, y1:{y1}, x2:{x2}, y2:{y2}]")

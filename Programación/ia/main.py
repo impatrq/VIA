@@ -29,3 +29,38 @@ def load_image_from_path(image_path):
         image = Image.open(BytesIO(response.content)).convert("RGB")
     else:
         image = Image.open(image_path).convert("RGB")
+
+        
+    # TensorFlow Hub models expect uint8 images and might resize internally
+    # Convert to numpy array and add batch dimension
+    image_np = np.array(image)
+    return image, image_np
+
+original_image_pil, image_np = load_image_from_path(image_path)
+
+# Realizar la inferencia
+# Los modelos de TF Hub esperan un tensor de imagen en formato [1, height, width, 3]
+# y devuelven un diccionario con las detecciones.
+print("Realizando inferencia...")
+input_tensor = tf.convert_to_tensor(image_np, dtype=tf.uint8)
+input_tensor = input_tensor[tf.newaxis, ...]
+
+result = detector(input_tensor)
+
+# Los resultados de un modelo de TF Hub suelen ser un diccionario.
+# Las claves relevantes son 'detection_boxes', 'detection_scores', 'detection_classes'
+# y 'detection_class_entities' o similar para los nombres de las clases.
+
+# Convertir las clases numéricas a nombres legibles.
+# Para el modelo 'ssd_mobilenet_v2', las clases son COCO dataset IDs.
+# Aquí usaremos un mapeo simple o podemos cargar un diccionario de etiquetas.
+# Para una lista completa de etiquetas de COCO, podrías cargar un archivo .pbtxt
+# o usar un mapeo predefinido.
+
+# Nota: Este modelo no devuelve 'detection_class_entities' directamente,
+# sino 'detection_classes' (IDs). Para obtener nombres, necesitamos un mapeo.
+# Para simplificar, asumiremos que conocemos algunos de los IDs de COCO.
+
+# Diccionario de mapeo de clases (ejemplo parcial para COCO dataset)
+# Puedes expandir este diccionario para más clases si es necesario.
+# O, si el modelo proporciona un mapeo, usarlo.

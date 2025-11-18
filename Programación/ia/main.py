@@ -121,3 +121,24 @@ for i in range(len(detection_scores)):
         draw.text((x1 + 5, y1 + 5), f"{label}: {confidence:.2f}", fill="red", font=font)
 
         print(f"  - Objeto: {label} (Confianza: {confidence:.2f}) en [x1:{x1}, y1:{y1}, x2:{x2}, y2:{y2}]")
+
+        # Aquí puedes añadir lógica para los objetos específicos que te interesan
+        if label == 'traffic light' and confidence > 0.5:
+            print(f"    -> ¡Semáforo detectado con alta confianza! Es necesario un modelo específico para diferenciar entre verde y rojo.")
+        elif label == 'car' or label == 'bus' or label == 'truck':
+            print(f"    -> ¡Vehículo detectado!")
+        elif label == 'person':
+            print(f"    -> ¡Persona detectada!")
+        # TensorFlow Hub SSD MobileNet V2 doesn't typically have 'zebra crossing' class.
+        # elif label == 'zebra crossing':
+        #     print(f"    -> ¡Paso de cebra detectado!")
+        # Para semáforo verde/rojo específico y andamios, se requiere un modelo customizado o más avanzado.
+
+if detected_objects_count == 0:
+    print("No se detectaron objetos en la imagen con la confianza mínima especificada.")
+
+# Mostrar la imagen con las detecciones
+print("\nMostrando imagen con detecciones...")
+draw_image.show() # Esto mostrará la imagen en Colab o en un entorno gráfico.
+
+print("\nAnálisis completado.")

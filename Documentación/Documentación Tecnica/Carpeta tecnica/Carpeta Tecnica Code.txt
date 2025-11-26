@@ -757,4 +757,35 @@ HandsonTec. "HC-SR04 Ultrasonic Sensor — User Guide". Disponible en: \url{http
 Espressif Systems. "ESP32 Series — Technical Reference and Documentation". Sitio oficial con documentación de SDK y datasheets. Disponible en: \url{https://www.espressif.com/en/support/download/documents}.
 
 \end{thebibliography}
+
+\section{Elementos de alcance inconclusos}
+ \subsection{Uso de un servidor para liberar al usuario de la raspberry}
+ \begin{itemize}
+  \item \textbf{ESTADO}: No implementado
+  \item \textbf{EXPLICACIÓN}: Para que el servidor funcione, la ESP32 debe conectarse por wifi a la raspberry, lo que en caso de no tener wifi o datos, la conexión no sucedera. Ademas, este metodo tiene un delay muy grande como para que sea rentable o funcional.
+  \item \textbf{IMPACTO}: El usuario debe llevar encima la raspberry conectada a los lentes por un cable. Pero gracias a esto, el proceso de detección es mucho mas facil y directo.
+  \item \textbf{ACCIÓN A FUTURO}: Una vez encontremos una forma mas efectiva y confiable de enviar los datos a la raspberry, sacaremos la raspberry del equipo entero y la usaremos como servidor externo.
+ \end{itemize}
+ \subsection{Lentes para gente con visión reducida}
+   \begin{itemize}
+  \item \textbf{ESTADO}: En proceso
+  \item \textbf{EXPLICACIÓN}: Para que los lentes funciones tanto para las personas sin visión como para las personas con visión reducida, 
+  necesitariamos unos lentes con espacios dedicados a los componentes para que no interrumpan la visión. Para tener esos espacios, debemos generarlos en la edición digital para luego poder imprimirlos, algo que es muy dificil de hacer con nuestra experiencia y costoso si las medidas no son correctas.
+  \item \textbf{IMPACTO}: Debido a estas complicaciones, los lentes no estan diseñados para personas con visión normal o reducida. 
+  \item \textbf{ACCIÓN A FUTURO}: Haremos varios intentos hasta encontrar la medida correcta. Una vez lo hagamos, alteraremos los lentes para que funcione con gente con visión normal y reducida.
+ \end{itemize}
+\subsection{Modelo entrenado}
+   \begin{itemize}
+  \item \textbf{ESTADO}: Parcial
+  \item \textbf{EXPLICACIÓN}: Actualmente, el sistema de reconocimiento el proyecto funciona con un modelo pre-entrenado. Teniamos un modelo entrenado por nosotros que ibamos a usar, pero cuando quisimos probarlo, descubrimos que era demasiado pesado para el proyecto.
+  \item \textbf{IMPACTO}: El modelo pre-entrenado tiene algunos de los objetos que necesitamos, pero tambien tiene muchos que no. Esto puede generar errores de lectura o incluso confusión de la camara.
+  \item \textbf{ACCIÓN A FUTURO}: Cuando consigamos mas capacidad o podamos liberar espacio en la raspberry, usaremos nuestro modelo entrenado.
+ \end{itemize}
+\subsection{Lectura de texto}
+   \begin{itemize}
+  \item \textbf{ESTADO}: Inconcluso
+  \item \textbf{EXPLICACIÓN}: Luego de una visita a la ASAC, estos nos comentaron sobre una app "be my eyes", la cual leeria en voz alta el texto al que le saquen foto. Nos intereso la idea y quisimos añadirla como una mejora integrada. Tristemente, la idea nunca se pudo concretar, debido a: La idea surgio a mitad de año, dandono menos tiempo para realizarla. A su vez, debido a los cambios que fuimos haciendo al proyecto, teniamos que dejar de lado la idea para concentrarnos en el proyecto principal.
+  \item \textbf{IMPACTO}: La función de lectura de texto no esta integrada, por lo que se debera usar esa app por separado por el momento.
+  \item \textbf{ACCIÓN A FUTURO}: Una vez encontremos tiempo para realizarlo, lo integraremos, adaptaremos y mejoraremos.
+ \end{itemize}
 \end{document}
